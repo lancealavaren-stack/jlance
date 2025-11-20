@@ -41,31 +41,19 @@ h1 {
     color: white;
     font-size: 2.2rem;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
 .container {
     width: 100%;
-    max-width: 600px;
-    background: rgba(255,255,255,0.2);
-    border-radius: 20px;
-    padding: 40px 20px;
-    backdrop-filter: blur(20px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 50px;
+    max-width: 700px;
     position: relative;
 }
 
 .timeline-wrapper {
-    display: flex;
-    flex-direction: column; /* vertical layout */
-    gap: 40px;
-    width: 100%;
-    align-items: center; /* center items horizontally */
     position: relative;
+    padding: 20px 0;
 }
 
 .timeline-wrapper::before {
@@ -81,19 +69,42 @@ h1 {
 }
 
 .timeline-item {
+    position: relative;
+    width: 50%;
+    padding: 20px 40px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    transition: transform 0.3s, filter 0.3s;
-    cursor: pointer;
-    max-width: 180px;
-    text-align: center;
-    position: relative;
-    z-index: 1;
+    align-items: flex-start;
+    text-align: left;
 }
-.timeline-item:hover {
-    transform: translateY(-5px) scale(1.05);
-    filter: drop-shadow(0 0 10px rgba(255,255,255,0.6));
+
+.timeline-item:nth-child(odd) {
+    left: 0;
+    align-items: flex-end;
+    text-align: right;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50%;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    top: 40px;
+    width: 20px;
+    height: 2px;
+    background: rgba(255,255,255,0.3);
+}
+
+.timeline-item:nth-child(odd)::after {
+    right: -20px;
+}
+
+.timeline-item:nth-child(even)::after {
+    left: -20px;
 }
 
 .year-circle {
@@ -109,34 +120,49 @@ h1 {
     border: 3px solid white;
     overflow: hidden;
     transition: transform 0.3s, box-shadow 0.3s;
+    z-index: 1;
 }
 .year-circle img { width: 100%; height: 100%; object-fit: cover; }
 .year-circle:hover { transform: scale(1.1); box-shadow: 0 0 20px rgba(255,255,255,0.7); }
 
-.year-label { font-size: 1.1rem; font-weight: bold; color: white; margin-bottom: 6px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
-.description { color: white; font-size: 0.85rem; line-height: 1.4; padding: 8px; background: rgba(255,255,255,0.1); border-radius: 8px; width: 100%; }
+.year-label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 8px;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+}
+
+.description {
+    color: #fff;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    padding: 12px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 10px;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
 
 .modal { display: none; position: fixed; z-index: 200; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.7); justify-content: center; align-items: center; animation: fadeIn 0.3s ease; }
 .modal-content { background: white; border-radius: 15px; padding: 25px 20px; max-width: 400px; width: 90%; text-align: center; position: relative; display: flex; flex-direction: column; align-items: center; animation: slideIn 0.3s ease; }
 .zoom-image { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; margin-bottom: 12px; transform: scale(0.7); opacity: 0; transition: transform 0.4s ease, opacity 0.4s ease; }
 .modal.show .zoom-image { transform: scale(1); opacity: 1; }
-.modal-content h2 { margin-bottom: 8px; font-size: 1.5rem; text-align: center; }
-.modal-content p { font-size: 0.9rem; color: #333; text-align: center; }
+.modal-content h2 { margin-bottom: 10px; font-size: 1.6rem; color: #333; text-align: center; }
+.modal-content p { font-size: 1rem; color: #555; text-align: center; line-height: 1.6; }
 .close { position: absolute; top: 8px; right: 12px; font-size: 1.2rem; font-weight: bold; color: #333; cursor: pointer; }
 
 @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
 @keyframes slideIn { from {transform: translateY(-20px);} to {transform: translateY(0);} }
-@keyframes pulse { 0%, 100% { box-shadow: 0 0 20px rgba(255,255,255,0.7); } 50% { box-shadow: 0 0 30px rgba(255,255,255,1); } }
 
 @media (max-width: 768px) {
-    h1 { font-size: 1.8rem; margin-bottom: 15px; }
-    .container { padding: 20px 15px; }
-    .timeline-item { max-width: 140px; }
-    .year-circle { width: 80px; height: 80px; }
-    .year-label { font-size: 1rem; }
-    .description { font-size: 0.8rem; }
-    .back-button { font-size: 0.8rem; padding: 6px 12px; top: 15px; left: 15px; }
-    .timeline-wrapper::before { left: 50%; width: 2px; }
+    .timeline-item {
+        width: 100%;
+        padding: 20px 20px;
+        align-items: center !important;
+        text-align: center !important;
+    }
+    .timeline-item::after { display: none; }
 }
 </style>
 </head>
