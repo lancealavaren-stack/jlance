@@ -23,45 +23,44 @@ body {
     font-family: 'Georgia', serif;
     margin: 0; padding: 0;
     background: linear-gradient(135deg, var(--bg-lighter), var(--bg-light));
-    min-height: 100vh;
 }
 
-/* Navbar */
+/* Navbar like About Me page */
 .navbar {
     background: linear-gradient(135deg, var(--bg-lighter), var(--bg-light));
-    padding: 10px 0;
+    padding: 10px 15px;
     box-shadow: 0 2px 6px var(--shadow-dark);
-    font-family: 'Poppins', sans-serif;
     position: sticky;
     top: 0;
     z-index: 1000;
 }
-
 .navbar nav {
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 15px;
     flex-wrap: wrap;
 }
-
+.logo-container .logo-image {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+}
 .nav-left {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
     justify-content: center;
 }
-
 .nav-link {
     text-decoration: none;
     color: var(--text-body);
     font-weight: 600;
     padding-bottom: 5px;
     letter-spacing: 1px;
-    transition: color 0.3s, transform 0.3s;
     position: relative;
+    transition: color 0.3s, transform 0.3s;
 }
 .nav-link::after {
     content: '';
@@ -77,8 +76,6 @@ body {
 .nav-link:hover::after { width: 100%; }
 .nav-link:hover { color: var(--text-heading); transform: scale(1.05);}
 .nav-link.active { color: var(--text-heading); border-bottom: 2px solid var(--text-heading); }
-
-.logo-container .logo-image { width: 70px; height: 70px; object-fit: contain; }
 
 /* Hero Section */
 .hero-section {
@@ -113,10 +110,6 @@ body {
     display: flex;
     align-items: center;
     gap: 20px;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: popIn 0.8s forwards;
-    animation-delay: 0.2s;
     flex-wrap: wrap;
     justify-content: center;
 }
@@ -139,8 +132,6 @@ body {
     color: var(--text-heading);
     max-width: 200px;
     text-align: center;
-    opacity: 0;
-    transition: all 0.3s ease;
     position: relative;
 }
 .profile-dialogue::after {
@@ -160,7 +151,7 @@ body {
     max-width: 1000px;
     margin: 0 auto;
     padding: 20px 15px;
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(255,255,255,0.85);
     border-radius: 16px;
     box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
@@ -171,26 +162,13 @@ body {
     flex-wrap: wrap;
     gap: 20px;
 }
-.buttons-section {
-    display: flex; 
-    flex-direction: column; 
-    gap: 25px;
-    align-items: center;
-}
 .engagement-card-wrapper {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 15px;
     max-width: 700px;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: cardPopIn 0.6s forwards;
 }
-.engagement-card-wrapper:nth-child(1) { animation-delay: 0.4s; }
-.engagement-card-wrapper:nth-child(2) { animation-delay: 0.6s; }
-.engagement-card-wrapper:nth-child(3) { animation-delay: 0.8s; }
-
 .card-image-outside {
     width: 120px; height: 120px;
     object-fit: cover;
@@ -198,32 +176,14 @@ body {
     border: 3px solid var(--text-heading);
     padding: 3px;
     background: #fff;
-    flex-shrink: 0;
-    transition: transform 0.3s ease;
-    cursor: pointer;
 }
-.card-image-outside:hover { transform: scale(1.05); }
-
 .engagement-card {
     background:#fff; 
     border-radius:8px; 
     border:3px solid orange;
     padding:15px; 
-    box-shadow:0 3px 10px rgba(0,0,0,0.1); 
-    transition: transform 0.3s, box-shadow 0.3s; 
     display: flex; flex-direction: column; justify-content: center; flex: 1;
-    text-align: left;
 }
-.engagement-card:hover { 
-    transform: translateY(-3px); 
-    box-shadow:0 6px 15px rgba(0,188,212,0.3); 
-}
-.card-title { font-size: 1.1em; font-weight: 600; margin: 0 0 6px 0; color: var(--text-heading); }
-.card-description { font-size: 0.9em; color: var(--text-body); line-height: 1.4; }
-
-/* Animations */
-@keyframes popIn { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
-@keyframes cardPopIn { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
 
 /* Responsive */
 @media (max-width: 900px) {
@@ -264,36 +224,33 @@ body {
       <div class="photo-circle">
         <img src="lans.jpg.jpg" alt="Profile Photo">
       </div>
-      <div class="profile-dialogue" id="profileDialogue">Hi! Welcome, my friends!! 👋</div>
+      <div class="profile-dialogue">Hi! Welcome, my friends!! 👋</div>
     </div>
 
     <!-- Cards Section -->
     <div class="cards-section-container">
       <div class="cards-container">
-        <div class="buttons-section">
-          <!-- Card 1 -->
-          <div class="engagement-card-wrapper">
-            <img src="officer.jpg.jpg" alt="Card 1" class="card-image-outside">
-            <div class="engagement-card">
-              <h3 class="card-title">Student College Organization</h3>
-              <p class="card-description">Being part of college Organization for three years changed everything. My confidence and leadership increased, and I'm thrilled for personal growth.</p>
-            </div>
+        <div class="engagement-card-wrapper">
+          <img src="officer.jpg.jpg" alt="Card 1" class="card-image-outside">
+          <div class="engagement-card">
+            <h3>Student College Organization</h3>
+            <p>Being part of the college organization increased my confidence and leadership. Thrilled for personal growth!</p>
           </div>
-          <!-- Card 2 -->
-          <div class="engagement-card-wrapper">
-            <img src="pageant.jpg.png" alt="Card 2" class="card-image-outside">
-            <div class="engagement-card">
-              <h3 class="card-title">Pageantry</h3>
-              <p class="card-description">I joined a pageant, met amazing people, and gained confidence through new experiences and support from friends and family.</p>
-            </div>
+        </div>
+
+        <div class="engagement-card-wrapper">
+          <img src="pageant.jpg.png" alt="Card 2" class="card-image-outside">
+          <div class="engagement-card">
+            <h3>Pageantry</h3>
+            <p>Joining a pageant gave me amazing experiences and boosted my confidence with support from friends and family.</p>
           </div>
-          <!-- Card 3 -->
-          <div class="engagement-card-wrapper">
-            <img src="mc.jpg.jpg" alt="Card 3" class="card-image-outside">
-            <div class="engagement-card">
-              <h3 class="card-title">Master Of Ceremony</h3>
-              <p class="card-description">Being an MC for two years pushed me out of my comfort zone, allowing me to meet amazing people and develop personally.</p>
-            </div>
+        </div>
+
+        <div class="engagement-card-wrapper">
+          <img src="mc.jpg.jpg" alt="Card 3" class="card-image-outside">
+          <div class="engagement-card">
+            <h3>Master Of Ceremony</h3>
+            <p>Being an MC for two years helped me grow and meet amazing people outside my comfort zone.</p>
           </div>
         </div>
       </div>
@@ -301,35 +258,6 @@ body {
     <!-- End Cards Section -->
   </div>
 </section>
-
-<script>
-const messages = ["These are my college Experiences👋","Feel free to explore! check out my gallery😄"];
-let index = 0;
-const dialogue = document.getElementById("profileDialogue");
-const photoSection = document.querySelector(".photo-section-wrapper");
-let intervalId;
-
-function showMessage() {
-    dialogue.style.opacity = 0;
-    setTimeout(() => {
-        dialogue.textContent = messages[index];
-        dialogue.style.opacity = 1;
-        dialogue.style.animation = 'pop 0.4s ease';
-        setTimeout(() => { dialogue.style.animation = ''; }, 400);
-        index = (index + 1) % messages.length;
-    }, 500);
-}
-function startDialogueLoop() { intervalId = setInterval(showMessage, 3000); }
-function stopDialogueLoop() { clearInterval(intervalId); }
-window.onload = () => {
-    dialogue.style.opacity = 1;
-    dialogue.style.animation = 'pop 0.4s ease';
-    setTimeout(() => { dialogue.style.animation = ''; }, 400);
-    startDialogueLoop();
-};
-photoSection.addEventListener("mouseenter", stopDialogueLoop);
-photoSection.addEventListener("mouseleave", startDialogueLoop);
-</script>
 
 </body>
 </html>
