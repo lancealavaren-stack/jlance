@@ -29,7 +29,7 @@ body {
 /* Navbar */
 .navbar {
     background: linear-gradient(135deg, var(--bg-lighter), var(--bg-light));
-    padding: 10px 15px; /* smaller padding */
+    padding: 10px 15px;
     box-shadow: 0 2px 6px var(--shadow-dark);
     font-family: 'Poppins', sans-serif;
     position: sticky;
@@ -42,6 +42,7 @@ body {
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
+    flex-wrap: wrap;
 }
 .logo-container .logo-image {
     width: 70px;
@@ -49,12 +50,11 @@ body {
     object-fit: contain;
 }
 
-/* Nav Links */
 .nav-left {
     display: flex;
     gap: 15px;
     justify-content: center;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
 }
 .nav-link {
     text-decoration: none;
@@ -156,6 +156,7 @@ body {
     box-shadow: 0 6px 20px rgba(0,0,0,0.15);
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 20px;
 }
 .cards-container {
@@ -164,6 +165,7 @@ body {
     justify-content: center;
     align-items: center;
     gap: 20px;
+    width: 100%;
 }
 .engagement-card-wrapper {
     display: flex;
@@ -216,11 +218,14 @@ body {
 @keyframes cardPopIn { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
 @keyframes pop { 0% { transform: scale(0.8); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
 
-/* Responsive */
-@media (max-width:900px) {
-    .photo-circle { width: 160px; height: 160px; }
-    .profile-dialogue { max-width: 200px; font-size: 0.85em; }
-    .card-image-outside { width: 100px; height: 100px; }
+/* Responsive Navbar for Mobile */
+@media (max-width: 900px) {
+    .nav-left {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        text-align: center;
+    }
 }
 @media (max-width:600px) {
     .photo-circle { width: 140px; height: 140px; }
