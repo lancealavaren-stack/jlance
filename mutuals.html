@@ -14,10 +14,11 @@
     --text-body: #4a5568;
     --accent-blue-start: #3498db;
     --accent-blue-end: #1f618d;
+    --shadow-light: rgba(0,188,212,0.3);
     --shadow-dark: rgba(0,0,0,0.1);
 }
 
-/* -------------------- BODY -------------------- */
+/* Global Styles */
 body {
     font-family: 'Georgia', serif;
     margin: 0; padding: 0;
@@ -37,8 +38,10 @@ body {
 
 .navbar nav {
     display: flex;
-    flex-direction: column; /* logo on top */
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
 .logo-container {
@@ -47,17 +50,17 @@ body {
 }
 
 .logo-image {
-    width: 120px;
-    height: 120px;
+    width: 150px;   /* bigger logo */
+    height: 150px;  /* bigger logo */
     object-fit: contain;
 }
 
 .nav-container {
     display: flex;
-    flex-direction: row; /* force links in a row */
-    flex-wrap: nowrap;   /* prevent wrapping */
-    justify-content: center; /* center links */
     gap: 25px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -84,103 +87,67 @@ body {
 }
 
 .nav-link:hover::after { width: 100%; }
-.nav-link:hover { color: var(--text-heading); transform: scale(1.05);}
+.nav-link:hover { color: var(--text-heading); transform: scale(1.05); }
 .nav-link.active { color: var(--text-heading); border-bottom: 2px solid var(--text-heading); }
+
+/* Responsive Navbar */
+@media (max-width:600px) {
+    .logo-image { width: 110px; height: 110px; }
+    .nav-container { 
+        gap: 10px; 
+        font-size: 0.85em;
+        justify-content: center;
+        align-items: center;
+    }
+}
 
 /* -------------------- MUTUALS SECTION -------------------- */
 .mutuals-container {
-    max-width: 1200px;
-    margin: 50px auto;
-    padding: 20px;
-    text-align: center;
-    border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-    background: linear-gradient(-45deg, #ffffff, #e6f0fa, #dbe6f1, #ffffff);
-    background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
-}
-@keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 30px 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px var(--shadow-dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
 }
 
-.section-title { 
-    color: var(--text-heading); 
-    font-size: 2em; 
-    margin-bottom: 25px; 
-    font-weight: bold;
-}
-
-/* Profiles container */
-.profiles-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    justify-items: center;
-}
-
-/* Mutual card */
-.mutual-card { 
-    border-radius: 8px; 
-    padding: 15px; 
-    text-align: center; 
-    transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
-    opacity: 0;
-    transform: translateY(20px);
+.mutual-item {
     width: 100%;
-    max-width: 250px;
-    background: #fff;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-}
-.mutual-card.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-.mutual-card:hover { 
-    transform: translateY(-5px) scale(1.03); 
-    box-shadow: 0 10px 30px rgba(255,165,0,0.4), 0 0 40px rgba(255,165,0,0.2); 
-    filter: brightness(1.05);
+    padding: 15px;
+    background-color: var(--bg-lighter);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 2px 6px var(--shadow-dark);
 }
 
-/* Avatar */
-.mutual-avatar {
-    width: 100px;
-    height: 100px;
+.mutual-item img {
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
-    background: #ddd;
-    margin: 0 auto 10px;
-    overflow: hidden;
-    border: 4px solid rgb(67, 154, 230); 
-    box-sizing: border-box;
-    transition: box-shadow 0.3s ease, transform 0.3s;
-    box-shadow: 0 0 8px rgba(255, 165, 0, 0.6); 
+    object-fit: cover;
 }
-.mutual-card:hover .mutual-avatar {
-    box-shadow: 0 0 15px rgba(255, 165, 0, 0.8); 
-}
-.mutual-avatar img { width:100%; height:100%; object-fit:cover; }
 
-.mutual-name { font-size:1.2em; color: var(--text-heading); font-weight:600; margin-bottom:8px;}
-.mutual-link { display:inline-block; color: var(--accent-blue-start); text-decoration:none; font-size:0.85em; padding:6px 12px; border:2px solid var(--accent-blue-start); border-radius:5px; transition: background 0.3s, color 0.3s;}
-.mutual-link:hover { background: var(--accent-blue-start); color:#fff; }
-
-/* -------------------- RESPONSIVE -------------------- */
-@media (max-width:1024px) { .profiles-container { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width:768px) { 
-    .profiles-container { grid-template-columns: 1fr; } 
-    .logo-image { width: 90px; height: 90px; }
+.mutual-name {
+    font-weight: 600;
+    color: var(--text-heading);
+    font-size: 1.1em;
 }
-@media (max-width:480px) { 
-    .mutual-avatar { width: 80px; height: 80px; }
-    .mutual-card { max-width: 180px; }
-    .nav-container { flex-wrap: wrap; gap: 10px; font-size: 0.8em; } /* allow wrap on very small screens */
+
+/* Responsive */
+@media (max-width:600px) {
+    .mutual-item img { width: 50px; height: 50px; }
+    .mutual-name { font-size: 1em; }
 }
 </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
 <header class="navbar">
   <nav>
     <div class="logo-container">
@@ -196,59 +163,31 @@ body {
   </nav>
 </header>
 
-<!-- MUTUALS SECTION -->
-<div class="mutuals-container">
-  <h2 class="section-title">Mutual Friends</h2>
-  <div class="profiles-container">
-    <div class="mutual-card">
-      <div class="mutual-avatar">
-        <img src="shi.png.jpg" alt="Friend 1">
-      </div>
-      <h3 class="mutual-name">Irish Mae Mapa</h3>
-      <a href="https://example.com" target="_blank" class="mutual-link">Visit Website</a>
-    </div>
-    <div class="mutual-card">
-      <div class="mutual-avatar">
-        <img src="nersha.png.jpg" alt="Friend 2">
-      </div>
-      <h3 class="mutual-name">Nersha Marie Beronio</h3>
-      <a href="https://example.com" target="_blank" class="mutual-link">Visit Website</a>
-    </div>
-    <div class="mutual-card">
-      <div class="mutual-avatar">
-        <img src="beng.png.jpg" alt="Friend 3">
-      </div>
-      <h3 class="mutual-name">Gleah Paciente</h3>
-      <a href="https://example.com" target="_blank" class="mutual-link">Visit Website</a>
-    </div>
-    <div class="mutual-card">
-      <div class="mutual-avatar">
-        <img src="apol.png.jpg" alt="Friend 4">
-      </div>
-      <h3 class="mutual-name">Merry Christle Castro</h3>
-      <a href="https://merrychristlecastro.kesug.com/?i=1" target="_blank" class="mutual-link">Visit Website</a>
-    </div>
+<section class="mutuals-container">
+  <div class="mutual-item">
+    <img src="friend1.jpg" alt="Friend 1">
+    <span class="mutual-name">Gabriel V. Alavaren</span>
   </div>
-</div>
+  <div class="mutual-item">
+    <img src="friend2.jpg" alt="Friend 2">
+    <span class="mutual-name">Ronesa V. Alavaren</span>
+  </div>
+  <div class="mutual-item">
+    <img src="friend3.jpg" alt="Friend 3">
+    <span class="mutual-name">Another Friend</span>
+  </div>
+  <!-- Add more mutuals here -->
+</section>
 
 <script>
-// Scroll-triggered fade-in for mutual cards
-const mutualCards = document.querySelectorAll('.mutual-card');
-function isInViewport(element) {
-    const rect = element.getBoundingClientRect();
-    return rect.top <= (window.innerHeight || document.documentElement.clientHeight) - 100;
-}
-function checkCards() {
-    mutualCards.forEach((card, index) => {
-        if (isInViewport(card) && !card.classList.contains('visible')) {
-            setTimeout(() => {
-                card.classList.add('visible');
-            }, index * 150);
-        }
-    });
-}
-window.addEventListener('scroll', checkCards);
-window.addEventListener('load', checkCards);
+  // Auto highlight active nav link
+  const currentPage = window.location.pathname.split("/").pop().toLowerCase();
+  const navLinks = document.querySelectorAll(".nav-link");
+  navLinks.forEach(link => {
+    const linkPage = link.getAttribute("href").split("/").pop().toLowerCase();
+    if(currentPage === linkPage) link.classList.add("active");
+    else link.classList.remove("active");
+  });
 </script>
 
 </body>
