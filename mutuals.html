@@ -50,8 +50,8 @@ body {
 }
 
 .logo-image {
-    width: 150px;   /* bigger logo */
-    height: 150px;  /* bigger logo */
+    width: 150px;  
+    height: 150px;  
     object-fit: contain;
 }
 
@@ -90,20 +90,9 @@ body {
 .nav-link:hover { color: var(--text-heading); transform: scale(1.05); }
 .nav-link.active { color: var(--text-heading); border-bottom: 2px solid var(--text-heading); }
 
-/* Responsive Navbar */
-@media (max-width:600px) {
-    .logo-image { width: 110px; height: 110px; }
-    .nav-container { 
-        gap: 10px; 
-        font-size: 0.85em;
-        justify-content: center;
-        align-items: center;
-    }
-}
-
-/* -------------------- MUTUALS SECTION -------------------- */
+/* -------------------- MUTUALS / PROFILES -------------------- */
 .mutuals-container {
-    max-width: 900px;
+    max-width: 1000px;
     margin: 60px auto;
     padding: 30px 15px;
     background-color: #fff;
@@ -112,37 +101,79 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 25px;
+    gap: 30px;
 }
 
-.mutual-item {
-    width: 100%;
-    padding: 15px;
-    background-color: var(--bg-lighter);
-    border-radius: 6px;
+.section-title {
+    font-size: 2em;
+    color: var(--text-heading);
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.profiles-container {
     display: flex;
-    align-items: center;
-    gap: 15px;
-    box-shadow: 0 2px 6px var(--shadow-dark);
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+    align-items: flex-start;
 }
 
-.mutual-item img {
-    width: 60px;
-    height: 60px;
+.mutual-card {
+    background-color: var(--bg-lighter);
+    border-radius: 10px;
+    padding: 20px;
+    width: 220px;
+    text-align: center;
+    box-shadow: 0 2px 8px var(--shadow-dark);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+.mutual-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.mutual-avatar img {
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid var(--accent-blue-start);
 }
 
 .mutual-name {
+    font-size: 1.1em;
     font-weight: 600;
     color: var(--text-heading);
-    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.mutual-link {
+    text-decoration: none;
+    color: var(--accent-blue-start);
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.mutual-link:hover {
+    color: var(--accent-blue-end);
 }
 
 /* Responsive */
-@media (max-width:600px) {
-    .mutual-item img { width: 50px; height: 50px; }
-    .mutual-name { font-size: 1em; }
+@media (max-width: 900px) {
+    .mutual-card { width: 45%; }
+}
+@media (max-width: 600px) {
+    .logo-image { width: 110px; height: 110px; }
+    .nav-container { 
+        gap: 10px; 
+        font-size: 0.85em;
+    }
+    .mutual-card { width: 100%; }
 }
 </style>
 </head>
@@ -163,20 +194,38 @@ body {
   </nav>
 </header>
 
-<section class="mutuals-container">
-  <div class="mutual-item">
-    <img src="friend1.jpg" alt="Friend 1">
-    <span class="mutual-name">Gabriel V. Alavaren</span>
+<section class="mutuals-container"> 
+  <h2 class="section-title">Mutual Friends</h2>
+  <div class="profiles-container">
+    <div class="mutual-card">
+      <div class="mutual-avatar">
+        <img src="shi.png.jpg" alt="Friend 1">
+      </div>
+      <h3 class="mutual-name">Irish Mae Mapa</h3>
+      <a href="https://example.com" target="_blank" class="mutual-link">Visit Website</a>
+    </div>
+    <div class="mutual-card">
+      <div class="mutual-avatar">
+        <img src="nersha.png.jpg" alt="Friend 2">
+      </div>
+      <h3 class="mutual-name">Nersha Marie Beronio</h3>
+      <a href="https://example.com" target="_blank" class="mutual-link">Visit Website</a>
+    </div>
+    <div class="mutual-card">
+      <div class="mutual-avatar">
+        <img src="beng.png.jpg" alt="Friend 3">
+      </div>
+      <h3 class="mutual-name">Gleah Paciente</h3>
+      <a href="https://example.com" target="_blank" class="mutual-link">Visit Website</a>
+    </div>
+    <div class="mutual-card">
+      <div class="mutual-avatar">
+        <img src="apol.png.jpg" alt="Friend 4">
+      </div>
+      <h3 class="mutual-name">Merry Christle Castro</h3>
+      <a href="https://merrychristlecastro.kesug.com/?i=1" target="_blank" class="mutual-link">Visit Website</a>
+    </div>
   </div>
-  <div class="mutual-item">
-    <img src="friend2.jpg" alt="Friend 2">
-    <span class="mutual-name">Ronesa V. Alavaren</span>
-  </div>
-  <div class="mutual-item">
-    <img src="friend3.jpg" alt="Friend 3">
-    <span class="mutual-name">Another Friend</span>
-  </div>
-  <!-- Add more mutuals here -->
 </section>
 
 <script>
@@ -188,6 +237,24 @@ body {
     if(currentPage === linkPage) link.classList.add("active");
     else link.classList.remove("active");
   });
+
+  // Scroll-triggered fade-in for mutual cards
+  const mutualCards = document.querySelectorAll('.mutual-card');
+  function isInViewport(element) {
+      const rect = element.getBoundingClientRect();
+      return rect.top <= (window.innerHeight || document.documentElement.clientHeight) - 100;
+  }
+  function checkCards() {
+      mutualCards.forEach((card, index) => {
+          if (isInViewport(card) && !card.classList.contains('visible')) {
+              setTimeout(() => {
+                  card.classList.add('visible');
+              }, index * 150);
+          }
+      });
+  }
+  window.addEventListener('scroll', checkCards);
+  window.addEventListener('load', checkCards);
 </script>
 
 </body>
