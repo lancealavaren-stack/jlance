@@ -25,7 +25,7 @@ body {
     min-height: 100vh;
 }
 
-/* Navbar */
+/* -------------------- NAVBAR -------------------- */
 .navbar {
     background: #f4f5f6;
     padding: 15px 0;
@@ -38,23 +38,20 @@ body {
 
 .navbar nav {
     display: flex;
-    justify-content: flex-start; /* Navbar links on the left */
+    flex-direction: column; /* stack logo above links */
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-    position: relative;
 }
 
-/* Logo fixed to the left */
+/* Logo */
 .logo-container {
-    position: absolute;
-    left: 20px;
-    top: 50%;
-    transform: translateY(-50%);
+    text-align: center;
+    margin-bottom: 10px; /* spacing between logo and nav */
 }
 
-.logo-container .logo-image {
+.logo-image {
     width: 70px;
     height: 70px;
     object-fit: contain;
@@ -63,10 +60,9 @@ body {
 /* Nav Links */
 .nav-left {
     display: flex;
-    gap: 25px;
-    flex-wrap: wrap;
-    align-items: center;
-    margin-left: 120px; /* Add space to avoid overlapping logo */
+    gap: 25px; /* space between links */
+    flex-wrap: wrap; /* wrap on very small screens */
+    justify-content: center;
 }
 
 .nav-link {
@@ -98,9 +94,7 @@ body {
     width: 100%;
 }
 
-.nav-link:hover {
-    color: var(--text-heading);
-}
+.nav-link:hover { color: var(--text-heading); }
 
 .nav-link.active::after {
     width: 100%;
@@ -193,9 +187,7 @@ body {
     transition: 0.3s;
 }
 
-.lightbox .close:hover {
-    color: #ffcc00;
-}
+.lightbox .close:hover { color: #ffcc00; }
 
 .lightbox .prev, .lightbox .next {
     position: absolute;
@@ -209,10 +201,7 @@ body {
     transition: 0.3s;
 }
 
-.lightbox .prev:hover, .lightbox .next:hover {
-    color: #ffcc00;
-}
-
+.lightbox .prev:hover, .lightbox .next:hover { color: #ffcc00; }
 .lightbox .prev { left: 20px; }
 .lightbox .next { right: 20px; }
 
@@ -228,12 +217,12 @@ body {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
         gap: 10px;
     }
-    .logo-container .logo-image { width: 60px; height: 60px; }
+    .logo-image { width: 60px; height: 60px; }
 }
 
 @media (max-width: 768px) {
     .navbar nav { padding: 0 15px; }
-    .nav-left { gap: 15px; flex-wrap: wrap; justify-content: center; margin-left: 0; }
+    .nav-left { gap: 15px; flex-wrap: wrap; justify-content: center; }
     .nav-link { font-size: 0.8em; }
     .white-container { padding: 15px; margin: 20px auto; }
     .white-title { font-size: 24px; margin-bottom: 15px; }
@@ -244,7 +233,7 @@ body {
 
 @media (max-width: 480px) {
     .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 6px; }
-    .logo-container .logo-image { width: 50px; height: 50px; }
+    .logo-image { width: 50px; height: 50px; }
     .nav-link { font-size: 0.75em; }
 }
 </style>
@@ -252,12 +241,12 @@ body {
 
 <body>
 
+<!-- -------------------- NAVBAR -------------------- -->
 <header class="navbar">
   <nav>
     <div class="logo-container">
       <img src="logo.png.png" alt="Logo" class="logo-image">
     </div>
-
     <div class="nav-left" id="nav-links">
       <a href="aboutme.html" class="nav-link">ABOUT ME</a>
       <a href="engagement.html" class="nav-link">ENGAGEMENT</a>
@@ -268,7 +257,7 @@ body {
   </nav>
 </header>
 
-<!-- Gallery Section -->
+<!-- -------------------- GALLERY SECTION -------------------- -->
 <div class="white-container">
     <h2 class="white-title"></h2>
 
@@ -288,7 +277,7 @@ body {
     </div>
 </div>
 
-<!-- Lightbox -->
+<!-- -------------------- LIGHTBOX -------------------- -->
 <div id="lightbox" class="lightbox">
     <span class="close">&times;</span>
     <img class="lightbox-img" src="">
