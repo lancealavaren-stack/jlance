@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About Me </title>
+<title>About Me</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <style>
@@ -29,7 +29,7 @@ body {
 /* Navbar */
 .navbar {
     background: linear-gradient(135deg, var(--bg-lighter), var(--bg-light));
-    padding: 10px 0; /* reduced padding */
+    padding: 10px 20px;
     box-shadow: 0 2px 6px var(--shadow-dark);
     font-family: 'Poppins', sans-serif;
     position: sticky;
@@ -39,19 +39,24 @@ body {
 
 .navbar nav {
     display: flex;
-    justify-content: space-between; 
-    align-items: center;
+    flex-direction: column; /* stacked layout */
+    align-items: flex-start;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 15px; /* reduced horizontal padding */
-    flex-wrap: wrap;
+    padding: 0;
+}
+
+.logo-container .logo-image {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    margin-bottom: 10px;
 }
 
 .nav-left {
     display: flex;
-    gap: 25px; /* slightly smaller gap */
     flex-wrap: wrap;
-    justify-content: center;
+    gap: 15px;
 }
 
 .nav-link {
@@ -60,8 +65,8 @@ body {
     font-weight: 600;
     padding-bottom: 5px;
     letter-spacing: 1px;
-    transition: color 0.3s, transform 0.3s;
     position: relative;
+    transition: color 0.3s, transform 0.3s;
 }
 
 .nav-link::after {
@@ -90,13 +95,6 @@ body {
     border-bottom: 2px solid var(--text-heading);
 }
 
-/* Logo */
-.logo-container .logo-image {
-    width: 70px; /* smaller logo */
-    height: 70px; /* smaller logo */
-    object-fit: contain;
-}
-
 /* About Me Section */
 .about-me-container {
     display: flex;
@@ -104,7 +102,7 @@ body {
     align-items: center;
     max-width: 900px;
     margin: 60px auto;
-    padding: 30px 15px; /* reduced padding */
+    padding: 30px 15px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 12px var(--shadow-dark);
@@ -121,7 +119,7 @@ body {
 .image-section::before {
     content: '';
     position: absolute;
-    width: 260px; /* smaller circle */
+    width: 260px;
     height: 260px;
     top: 0;
     background: linear-gradient(135deg, var(--accent-blue-start), var(--accent-blue-end));
@@ -130,7 +128,7 @@ body {
 }
 
 .image-circle {
-    width: 260px; /* smaller circle */
+    width: 260px;
     height: 260px;
     border-radius: 50%;
     overflow: hidden;
@@ -151,7 +149,6 @@ body {
     object-fit: cover;
 }
 
-/* Info Section */
 .info-section {
     width: 100%;
     text-align: center;
@@ -182,7 +179,7 @@ body {
     margin-top: 30px; 
     background: linear-gradient(135deg, var(--accent-blue-start), var(--accent-blue-end)); 
     color:#fff; 
-    padding:12px 35px; /* slightly smaller */
+    padding:12px 35px; 
     border:none; 
     border-radius:6px; 
     font-size:1.05em; 
@@ -242,7 +239,7 @@ body {
       <img src="logo.png.png" alt="Logo" class="logo-image">
     </div>
     <div class="nav-left" id="nav-links">
-      <a href="aboutme.html" class="nav-link active">ABOUT ME</a>
+      <a href="aboutme.html" class="nav-link">ABOUT ME</a>
       <a href="engagement.html" class="nav-link">ENGAGEMENT</a>
       <a href="highlights.html" class="nav-link">ALBUM</a>
       <a href="mutuals.html" class="nav-link">MUTUALS</a>
@@ -313,6 +310,17 @@ body {
     <button class="timeline-btn" onclick="window.location.href='timeline.html'">My Storyline</button>
   </div>
 </section>
+
+<script>
+  // Auto highlight active nav link
+  const currentPage = window.location.pathname.split("/").pop().toLowerCase();
+  const navLinks = document.querySelectorAll(".nav-link");
+  navLinks.forEach(link => {
+    const linkPage = link.getAttribute("href").split("/").pop().toLowerCase();
+    if(currentPage === linkPage) link.classList.add("active");
+    else link.classList.remove("active");
+  });
+</script>
 
 </body>
 </html>
