@@ -14,11 +14,10 @@
     --text-body: #4a5568;
     --accent-blue-start: #3498db;
     --accent-blue-end: #1f618d;
-    --shadow-light: rgba(0,188,212,0.3);
     --shadow-dark: rgba(0,0,0,0.1);
 }
 
-/* Body */
+/* -------------------- BODY -------------------- */
 body {
     font-family: 'Georgia', serif;
     margin: 0; padding: 0;
@@ -38,7 +37,7 @@ body {
 
 .navbar nav {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* logo on top */
     align-items: center;
 }
 
@@ -55,9 +54,10 @@ body {
 
 .nav-container {
     display: flex;
+    flex-direction: row; /* force links in a row */
+    flex-wrap: nowrap;   /* prevent wrapping */
+    justify-content: center; /* center links */
     gap: 25px;
-    flex-wrap: wrap;
-    justify-content: center;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -174,7 +174,7 @@ body {
 @media (max-width:480px) { 
     .mutual-avatar { width: 80px; height: 80px; }
     .mutual-card { max-width: 180px; }
-    .nav-container { gap: 10px; font-size: 0.8em; }
+    .nav-container { flex-wrap: wrap; gap: 10px; font-size: 0.8em; } /* allow wrap on very small screens */
 }
 </style>
 </head>
