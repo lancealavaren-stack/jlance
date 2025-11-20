@@ -18,10 +18,12 @@
     --shadow-dark: rgba(0,0,0,0.1);
 }
 
+html { scroll-behavior: smooth; }
 body {
     font-family: 'Georgia', serif;
     margin: 0; padding: 0;
     background: linear-gradient(135deg, var(--bg-lighter), var(--bg-light));
+    min-height: 100vh;
 }
 
 /* Navbar */
@@ -36,7 +38,7 @@ body {
 }
 .navbar nav {
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
@@ -50,62 +52,105 @@ body {
 }
 .nav-left {
     display: flex;
-    gap: 25px;
+    gap: 15px;
     flex-wrap: wrap;
     justify-content: center;
 }
-.nav-link {
+.nav-button {
+    display: inline-block;
     text-decoration: none;
-    color: var(--text-body);
+    padding: 8px 18px;
     font-weight: 600;
-    padding-bottom: 5px;
-    letter-spacing: 1px;
-    position: relative;
-    transition: color 0.3s, transform 0.3s;
+    color: #fff;
+    background: linear-gradient(135deg, var(--accent-blue-start), var(--accent-blue-end));
+    border-radius: 6px;
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
 }
-.nav-link::after {
+.nav-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    background: linear-gradient(135deg, var(--accent-blue-end), var(--accent-blue-start));
+}
+.nav-button.active {
+    background: linear-gradient(135deg, var(--accent-blue-end), var(--accent-blue-start));
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, #e0f0ff, #c0e0ff);
+    position: relative;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    overflow: hidden;
+}
+.hero-section::before {
     content: '';
     position: absolute;
-    width: 0;
-    height: 2px;
-    left: 50%;
-    bottom: 0;
-    background-color: var(--text-heading);
-    transition: all 0.3s ease;
-    transform: translateX(-50%);
+    inset: 0;
+    background: rgba(255,255,255,0.3);
+    backdrop-filter: blur(12px);
+    z-index: 1;
 }
-.nav-link:hover::after { width: 100%; }
-.nav-link:hover { color: var(--text-heading); transform: scale(1.05); }
-.nav-link.active { color: var(--text-heading); border-bottom: 2px solid var(--text-heading); }
-
-/* Stack nav-links on mobile */
-@media (max-width:768px) {
-    .navbar nav { flex-direction: column; align-items: center; }
-    .nav-left { flex-direction: column; gap: 15px; width: 100%; text-align: center; }
-    .logo-container { margin-bottom: 10px; }
-}
-
-/* Hero/Profile Section */
-.hero-section {
-    padding: 40px 20px;
+.hero-container {
+    position: relative;
+    z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 40px;
 }
+
+/* Profile Section */
 .photo-section-wrapper {
     display: flex;
     align-items: center;
     gap: 20px;
-    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: popIn 0.8s forwards;
+    animation-delay: 0.2s;
 }
 .photo-circle { 
-    width: 200px; height: 200px; border-radius: 50%; overflow: hidden; 
+    width: 200px; 
+    height: 200px; 
+    border-radius: 50%; 
+    overflow: hidden; 
     border: 5px solid #fff; 
     box-shadow: 0 10px 30px rgba(0,0,0,0.25); 
     background: linear-gradient(135deg, #6ba3d8, #8fc1e8); 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
 }
 .photo-circle img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
 .photo-circle:hover img { transform: scale(1.05); }
+
+.profile-dialogue {
+    background: #fff;
+    padding: 10px 16px;
+    border-radius: 20px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    font-size: 0.9em;
+    color: #245585;
+    max-width: 200px;
+    text-align: center;
+    opacity: 0;
+    transition: all 0.3s ease;
+    position: relative;
+}
+.profile-dialogue::after {
+    content: '';
+    position: absolute;
+    left: -8px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-width: 8px;
+    border-style: solid;
+    border-color: transparent #fff transparent transparent;
+}
 
 /* Cards Section */
 .cards-section-container {
@@ -120,25 +165,28 @@ body {
 .cards-container {
     display: flex;
     justify-content: center;
+    align-items: flex-start;
     flex-wrap: wrap;
     gap: 20px;
 }
-.buttons-section {
-    display: flex; 
-    flex-direction: column; 
-    gap: 25px;
-    align-items: center;
-}
+
+/* Card */
 .engagement-card-wrapper {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 15px;
     max-width: 700px;
-    text-align: left;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: cardPopIn 0.6s forwards;
 }
+.engagement-card-wrapper:nth-child(1) { animation-delay: 0.4s; }
+.engagement-card-wrapper:nth-child(2) { animation-delay: 0.6s; }
+.engagement-card-wrapper:nth-child(3) { animation-delay: 0.8s; }
 .card-image-outside {
-    width: 120px; height: 120px;
+    width: 120px;
+    height: 120px;
     object-fit: cover;
     border-radius: 12px;
     border: 3px solid #245585;
@@ -155,20 +203,39 @@ body {
     border:3px solid orange;
     padding:15px; 
     box-shadow:0 3px 10px rgba(0,0,0,0.1); 
+    transition: transform 0.3s, box-shadow 0.3s; 
     display: flex; 
     flex-direction: column;  
     justify-content: center;     
     flex: 1;
+    text-align: left;
 }
-.engagement-card:hover { transform: translateY(-3px); box-shadow:0 6px 15px rgba(0,188,212,0.3); }
+.engagement-card:hover { 
+    transform: translateY(-3px); 
+    box-shadow:0 6px 15px rgba(0,188,212,0.3); 
+}
 .card-title { font-size: 1.1em; font-weight: 600; margin: 0 0 6px 0; color: var(--text-heading); }
 .card-description { font-size: 0.9em; color: var(--text-body); line-height: 1.4; }
 
-/* Mobile adjustments for cards */
-@media (max-width:768px) {
+/* Animations */
+@keyframes popIn { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+@keyframes cardPopIn { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+
+/* Responsive */
+@media (max-width:900px) {
     .engagement-card-wrapper { flex-direction: column; text-align: center; }
-    .cards-container { justify-content: center; }
     .card-image-outside { width: 100px; height: 100px; }
+}
+@media (max-width:768px) {
+    .navbar nav { flex-direction: column; align-items: center; }
+    .nav-left { flex-direction: column; gap: 12px; width: 100%; text-align: center; }
+    .logo-container { margin-bottom: 10px; }
+}
+@media (max-width:600px) {
+    .photo-section-wrapper { flex-direction: column; gap: 15px; }
+    .photo-circle { width: 150px; height: 150px; }
+    .profile-dialogue { max-width: 160px; font-size: 0.85em; }
+    .cards-section-container { padding: 15px 10px; }
 }
 </style>
 </head>
@@ -180,51 +247,57 @@ body {
       <img src="logo.png.png" alt="Logo" class="logo-image">
     </div>
     <div class="nav-left">
-      <a href="aboutme.html" class="nav-link">ABOUT ME</a>
-      <a href="engagement.html" class="nav-link active">ENGAGEMENT</a>
-      <a href="highlights.html" class="nav-link">ALBUM</a>
-      <a href="mutuals.html" class="nav-link">MUTUALS</a>
-      <a href="contacts.html" class="nav-link">CONTACT</a>
+      <a href="aboutme.html" class="nav-button">ABOUT ME</a>
+      <a href="engagement.html" class="nav-button active">ENGAGEMENT</a>
+      <a href="highlights.html" class="nav-button">ALBUM</a>
+      <a href="mutuals.html" class="nav-button">MUTUALS</a>
+      <a href="contacts.html" class="nav-button">CONTACT</a>
     </div>
   </nav>
 </header>
 
 <section class="hero-section">
-  <div class="photo-section-wrapper">
-    <div class="photo-circle">
-      <img src="lans.jpg.jpg" alt="Jerry Lance Profile">
+  <div class="hero-container">
+    <div class="photo-section-wrapper">
+      <div class="photo-circle">
+        <img src="lans.jpg.jpg" alt="Jerry Lance Profile">
+      </div>
+      <div class="profile-dialogue" id="profileDialogue">
+        Hi! Welcome, my friends!! 👋
+      </div>
     </div>
-  </div>
 
-  <div class="cards-section-container">
-    <div class="cards-container">
-      <div class="buttons-section">
+    <div class="cards-section-container">
+      <div class="cards-container">
         <!-- Card 1 -->
         <div class="engagement-card-wrapper">
           <img src="officer.jpg.jpg" alt="Card 1" class="card-image-outside">
           <div class="engagement-card">
             <h3 class="card-title">Student College Organization</h3>
-            <p class="card-description">Becoming a member of the college Organization for three years has changed everything. My confidence and leadership abilities have increased as a result, and I'm thrilled to have had the chance to improve personally.</p>
+            <p class="card-description">Becoming a member of the college Organization for three years has changed everything...</p>
           </div>
         </div>
+
         <!-- Card 2 -->
         <div class="engagement-card-wrapper">
           <img src="pageant.jpg.png" alt="Card 2" class="card-image-outside">
           <div class="engagement-card">
             <h3 class="card-title">Pageantry</h3>
-            <p class="card-description">I stepped beyond my comfort zone and joined a pageant! I met amazing people and created priceless experiences and gained more confidence.</p>
+            <p class="card-description">I stepped beyond my comfort zone and joined a pageant! I met amazing people...</p>
           </div>
         </div>
+
         <!-- Card 3 -->
         <div class="engagement-card-wrapper">
           <img src="mc.jpg.jpg" alt="Card 3" class="card-image-outside">
           <div class="engagement-card">
             <h3 class="card-title">Master Of Ceremony</h3>
-            <p class="card-description">I had a great time serving as our college program's MC for two years! It forced me to step outside of my comfort zone and grow personally.</p>
+            <p class="card-description">I had a great time serving as our college program's MC for two years! I thoroughly enjoyed...</p>
           </div>
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
