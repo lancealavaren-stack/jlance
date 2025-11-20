@@ -37,7 +37,7 @@ body {
 
 .navbar nav {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* stack logo above links */
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
@@ -51,17 +51,18 @@ body {
 }
 
 .logo-image {
-    width: 120px;  /* increased from 80px */
-    height: 120px; /* increased from 80px */
+    width: 120px;
+    height: 120px;
     object-fit: contain;
 }
 
 /* Nav Links */
 .nav-left {
     display: flex;
-    gap: 25px;
-    flex-wrap: wrap;
+    gap: 35px;              /* consistent spacing */
     justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;       /* prevents wrapping on desktop */
     font-family: 'Poppins', sans-serif;
 }
 
@@ -217,6 +218,7 @@ body {
     .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 6px; }
     .logo-image { width: 120px; height: 120px; } /* logo remains large on mobile */
     .nav-link { font-size: 0.75em; }
+    .nav-left { flex-wrap: wrap; gap: 15px; }
 }
 </style>
 </head>
@@ -320,7 +322,6 @@ function resizeAllGridItems() {
     });
 }
 
-// Resize on load and window resize
 window.addEventListener('load', resizeAllGridItems);
 window.addEventListener('resize', resizeAllGridItems);
 </script>
