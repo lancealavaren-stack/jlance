@@ -28,7 +28,7 @@ body {
 /* Navbar */
 .navbar {
     background: #f4f5f6;
-    padding: 15px 20px;
+    padding: 15px 0;
     box-shadow: 0 2px 4px rgba(0,0,0,0.08);
     font-family: 'Poppins', sans-serif;
     position: sticky;
@@ -38,26 +38,35 @@ body {
 
 .navbar nav {
     display: flex;
-    justify-content: flex-start; /* left-aligned */
+    justify-content: flex-start; /* Navbar links on the left */
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    gap: 30px; /* spacing between logo and links */
+    padding: 0 20px;
+    position: relative;
 }
 
-/* Logo */
+/* Logo fixed to the left */
+.logo-container {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
 .logo-container .logo-image {
     width: 70px;
     height: 70px;
     object-fit: contain;
 }
 
-/* Nav Links left-aligned */
+/* Nav Links */
 .nav-left {
     display: flex;
     gap: 25px;
     flex-wrap: wrap;
     align-items: center;
+    margin-left: 120px; /* Add space to avoid overlapping logo */
 }
 
 .nav-link {
@@ -123,7 +132,7 @@ body {
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    grid-auto-rows: 10px;
+    grid-auto-rows: 10px; /* small row for dynamic span */
     gap: 12px;
     margin-top: 25px;
 }
@@ -207,6 +216,7 @@ body {
 .lightbox .prev { left: 20px; }
 .lightbox .next { right: 20px; }
 
+/* Fade-in animation for images */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -214,13 +224,16 @@ body {
 
 /* Responsive adjustments */
 @media (max-width: 1024px) {
-    .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 10px;
+    }
     .logo-container .logo-image { width: 60px; height: 60px; }
 }
 
 @media (max-width: 768px) {
-    .navbar nav { padding: 0 15px; flex-direction: column; align-items: flex-start; }
-    .nav-left { gap: 15px; margin-left: 0; }
+    .navbar nav { padding: 0 15px; }
+    .nav-left { gap: 15px; flex-wrap: wrap; justify-content: center; margin-left: 0; }
     .nav-link { font-size: 0.8em; }
     .white-container { padding: 15px; margin: 20px auto; }
     .white-title { font-size: 24px; margin-bottom: 15px; }
@@ -270,6 +283,8 @@ body {
         <img src="land8.jpg.jpg" alt="Gallery Image 4">
         <img src="land9.jpg.jpg" alt="Gallery Image 5">
         <img src="land10.jpg.jpg" alt="Gallery Image 6">
+        <img src="land11.jpg" alt="Gallery Image 7">
+        <img src="land12.jpg" alt="Gallery Image 8">
     </div>
 </div>
 
@@ -291,6 +306,7 @@ const nextBtn = document.querySelector('.lightbox .next');
 
 let currentIndex = 0;
 
+// Open lightbox
 galleryImages.forEach((img, index) => {
     img.addEventListener('click', () => {
         currentIndex = index;
@@ -299,24 +315,29 @@ galleryImages.forEach((img, index) => {
     });
 });
 
+// Close lightbox
 closeBtn.addEventListener('click', () => {
     lightbox.classList.remove('active');
 });
 
+// Next image
 nextBtn.addEventListener('click', () => {
     currentIndex = (currentIndex + 1) % galleryImages.length;
     lightboxImg.src = galleryImages[currentIndex].src;
 });
 
+// Previous image
 prevBtn.addEventListener('click', () => {
     currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
     lightboxImg.src = galleryImages[currentIndex].src;
 });
 
+// Close lightbox on background click
 lightbox.addEventListener('click', e => {
     if(e.target === lightbox) lightbox.classList.remove('active');
 });
 
+// ------------------ Dynamic Masonry Row Span ------------------
 function resizeAllGridItems() {
     const allItems = document.querySelectorAll('.gallery-grid img');
     allItems.forEach(item => {
@@ -328,6 +349,7 @@ function resizeAllGridItems() {
     });
 }
 
+// Resize on load and window resize
 window.addEventListener('load', resizeAllGridItems);
 window.addEventListener('resize', resizeAllGridItems);
 </script>
