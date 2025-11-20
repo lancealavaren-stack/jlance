@@ -17,7 +17,7 @@
     --shadow-dark: rgba(0,0,0,0.1);
 }
 
-html { scroll-behavior: smooth; }
+/* Global Styles */
 body {
     font-family: 'Georgia', serif;
     margin: 0; padding: 0;
@@ -41,22 +41,35 @@ body {
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    gap: 30px;
+    gap: 20px;
 }
 
+/* Logo */
 .logo-container .logo-image {
     width: 70px;
     height: 70px;
     object-fit: contain;
 }
 
+/* Nav scroll wrapper */
+.nav-scroll-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    overflow: hidden;
+    flex: 1;
+    position: relative;
+}
+
 .nav-left {
     display: flex;
     gap: 25px;
-    align-items: center;
-    flex-wrap: nowrap; /* prevent stacking */
-    margin-left: 50px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-behavior: smooth;
 }
+
+.nav-left::-webkit-scrollbar { display: none; }
 
 .nav-link {
     text-decoration: none;
@@ -64,8 +77,8 @@ body {
     font-weight: 600;
     padding-bottom: 5px;
     letter-spacing: 1px;
-    position: relative;
     transition: color 0.3s, transform 0.3s;
+    position: relative;
 }
 
 .nav-link::after {
@@ -83,6 +96,25 @@ body {
 .nav-link:hover::after { width: 100%; }
 .nav-link:hover { color: var(--text-heading); transform: scale(1.05); }
 .nav-link.active { color: var(--text-heading); border-bottom: 2px solid var(--text-heading); }
+
+/* Scroll buttons */
+.scroll-btn {
+    background: var(--text-heading);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    flex-shrink: 0;
+    display: none;
+    font-weight: bold;
+}
+.scroll-btn:hover { background: var(--accent-blue-start); }
+
+@media (max-width: 600px) {
+    .scroll-btn { display: block; }
+}
 
 /* Hero Section */
 .hero-section {
@@ -170,8 +202,6 @@ body {
     background: rgba(255, 255, 255, 0.85);
     border-radius: 16px;
     box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-    display: flex;
-    justify-content: center; /* center container */
 }
 .cards-container {
     display: flex;
@@ -180,8 +210,12 @@ body {
     flex-wrap: wrap;
     gap: 20px;
 }
-
-/* Engagement Cards */
+.buttons-section {
+    display: flex; 
+    flex-direction: column; 
+    gap: 25px;
+    align-items: center;
+}
 .engagement-card-wrapper {
     display: flex;
     flex-direction: row;
@@ -229,9 +263,28 @@ body {
 .card-title { font-size: 1.1em; font-weight: 600; margin: 0 0 6px 0; color: var(--text-heading); }
 .card-description { font-size: 0.9em; color: var(--text-body); line-height: 1.4; }
 
-/* Animations */
+/* Pop-in Animations */
 @keyframes popIn { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
 @keyframes cardPopIn { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0);
+    animation: fadeIn 0.4s forwards;
+}
+@keyframes fadeIn { to { background-color: rgba(0,0,0,0.8); } }
+.modal-content { margin: auto; display: block; max-width: 90%; max-height: 80%; border-radius: 12px; animation: popIn 0.4s ease; }
+.modal-close { position: absolute; top: 20px; right: 25px; color: #fff; font-size: 35px; font-weight: bold; cursor: pointer; transition: color 0.3s; }
+.modal-close:hover { color: #f1f1f1; }
 
 /* Responsive */
 @media (max-width:900px) {
@@ -239,7 +292,6 @@ body {
     .card-image-outside { width: 100px; height: 100px; }
 }
 @media (max-width:600px) {
-    .nav-left { overflow-x: auto; gap: 15px; margin-left: 20px; }
     .photo-section-wrapper { flex-direction: column; gap: 15px; }
     .photo-circle { width: 150px; height: 150px; }
     .profile-dialogue { max-width: 160px; font-size: 0.85em; }
@@ -254,12 +306,16 @@ body {
     <div class="logo-container">
       <img src="logo.png.png" alt="Logo" class="logo-image">
     </div>
-    <div class="nav-left" id="nav-links">
-      <a href="aboutme.html" class="nav-link">ABOUT ME</a>
-      <a href="engagement.html" class="nav-link active">ENGAGEMENT</a>
-      <a href="highlights.html" class="nav-link">ALBUM</a>
-      <a href="mutuals.html" class="nav-link">MUTUALS</a>
-      <a href="contacts.html" class="nav-link">CONTACT</a>
+    <div class="nav-scroll-wrapper">
+      <button class="scroll-btn left">&lt;</button>
+      <div class="nav-left" id="nav-links">
+        <a href="aboutme.html" class="nav-link">ABOUT ME</a>
+        <a href="engagement.html" class="nav-link active">ENGAGEMENT</a>
+        <a href="highlights.html" class="nav-link">ALBUM</a>
+        <a href="mutuals.html" class="nav-link">MUTUALS</a>
+        <a href="contacts.html" class="nav-link">CONTACT</a>
+      </div>
+      <button class="scroll-btn right">&gt;</button>
     </div>
   </nav>
 </header>
@@ -268,7 +324,7 @@ body {
   <div class="hero-container">
     <div class="photo-section-wrapper">
       <div class="photo-circle">
-        <img src="lans.jpg.jpg" alt="Profile Photo">
+        <img src="lans.jpg.jpg" alt="Jerry Lance Profile">
       </div>
       <div class="profile-dialogue" id="profileDialogue">
         Hi! Welcome, my friends!! 👋
@@ -277,30 +333,27 @@ body {
 
     <div class="cards-section-container">
       <div class="cards-container">
-        <!-- Card 1 -->
-        <div class="engagement-card-wrapper">
-          <img src="officer.jpg.jpg" alt="Card 1" class="card-image-outside">
-          <div class="engagement-card">
-            <h3 class="card-title">Student College Organization</h3>
-            <p class="card-description">Becoming a member of the college Organization for three years has changed everything. My confidence and leadership abilities have increased as a result, and I'm thrilled to have had the chance to improve personally.</p>
+        <div class="buttons-section">
+          <div class="engagement-card-wrapper">
+            <img src="officer.jpg.jpg" alt="Card 1" class="card-image-outside">
+            <div class="engagement-card">
+              <h3 class="card-title">Student College Organization</h3>
+              <p class="card-description">Becoming a member of the college Organization for three years has changed everything...</p>
+            </div>
           </div>
-        </div>
-
-        <!-- Card 2 -->
-        <div class="engagement-card-wrapper">
-          <img src="pageant.jpg.png" alt="Card 2" class="card-image-outside">
-          <div class="engagement-card">
-            <h3 class="card-title">Pageantry</h3>
-            <p class="card-description">I stepped beyond my comfort zone and joined a pageant! I met amazing people and created priceless experiences and saw the support that my friends and family give on this journey.</p>
+          <div class="engagement-card-wrapper">
+            <img src="pageant.jpg.png" alt="Card 2" class="card-image-outside">
+            <div class="engagement-card">
+              <h3 class="card-title">Pageantry</h3>
+              <p class="card-description">I stepped beyond my comfort zone and joined a pageant!...</p>
+            </div>
           </div>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="engagement-card-wrapper">
-          <img src="mc.jpg.jpg" alt="Card 3" class="card-image-outside">
-          <div class="engagement-card">
-            <h3 class="card-title">Master Of Ceremony</h3>
-            <p class="card-description">I had a great time serving as our college program's MC for two years! I thoroughly enjoyed the amazing event, which forced me to step outside of my comfort zone.</p>
+          <div class="engagement-card-wrapper">
+            <img src="mc.jpg.jpg" alt="Card 3" class="card-image-outside">
+            <div class="engagement-card">
+              <h3 class="card-title">Master Of Ceremony</h3>
+              <p class="card-description">I had a great time serving as our college program's MC for two years!...</p>
+            </div>
           </div>
         </div>
       </div>
@@ -309,7 +362,31 @@ body {
   </div>
 </section>
 
+<div id="imageModal" class="modal">
+  <span class="modal-close">&times;</span>
+  <img class="modal-content" id="modalImg">
+</div>
+
 <script>
+// Horizontal scroll buttons
+const nav = document.getElementById('nav-links');
+document.querySelector('.scroll-btn.left').addEventListener('click', ()=> nav.scrollBy({ left: -100, behavior: 'smooth' }));
+document.querySelector('.scroll-btn.right').addEventListener('click', ()=> nav.scrollBy({ left: 100, behavior: 'smooth' }));
+
+// Lightbox
+const modal = document.getElementById("imageModal");
+const modalImg = document.getElementById("modalImg");
+const modalClose = document.querySelector(".modal-close");
+document.querySelectorAll(".card-image-outside").forEach(img => {
+    img.addEventListener("click", () => {
+        modal.style.display = "block";
+        modalImg.src = img.src;
+    });
+});
+modalClose.addEventListener("click", () => { modal.style.display = "none"; });
+modal.addEventListener("click", e => { if(e.target === modal) modal.style.display = "none"; });
+
+// Dialogue Messages
 const messages = ["These are my college Experiences👋","Feel free to explore! check out my gallery😄"];
 let index = 0;
 const dialogue = document.getElementById("profileDialogue");
