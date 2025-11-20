@@ -29,7 +29,7 @@ body {
 /* -------------------- NAVBAR -------------------- */
 .navbar {
     background: linear-gradient(135deg, var(--bg-lighter), var(--bg-light));
-    padding: 15px 0;
+    padding: 15px 0; /* same as Engagement */
     box-shadow: 0 2px 6px var(--shadow-dark);
     position: sticky;
     top: 0;
@@ -43,19 +43,19 @@ body {
 }
 
 .logo-container {
-    margin-bottom: 10px;
+    margin-bottom: 10px; /* same as Engagement */
     text-align: center;
 }
 
 .logo-image {
-    width: 120px;
+    width: 120px;  /* desktop same as Engagement */
     height: 120px;
     object-fit: contain;
 }
 
 .nav-container {
     display: flex;
-    gap: 25px;
+    gap: 25px; /* same spacing as Engagement */
     flex-wrap: wrap;
     justify-content: center;
     font-family: 'Poppins', sans-serif;
@@ -84,8 +84,17 @@ body {
 }
 
 .nav-link:hover::after { width: 100%; }
-.nav-link:hover { color: var(--text-heading); transform: scale(1.05);}
+.nav-link:hover { color: var(--text-heading); transform: scale(1.05); }
 .nav-link.active { color: var(--text-heading); border-bottom: 2px solid var(--text-heading); }
+
+/* Responsive Navbar for Mobile */
+@media (max-width:600px) {
+    .logo-image { width: 90px; height: 90px; } /* match Engagement */
+    .nav-container { 
+        gap: 10px; /* match Engagement spacing */
+        font-size: 0.85em;
+    }
+}
 
 /* -------------------- ABOUT ME SECTION -------------------- */
 .about-me-container {
@@ -219,7 +228,6 @@ body {
     .image-circle { width: 180px; height: 180px;}
     .image-section::before { width: 180px; height: 180px; top: 0; }
     .detail-value, .detail-label { font-size: 0.95em; }
-    .nav-link { font-size: 0.85em;}
 }
 </style>
 </head>
