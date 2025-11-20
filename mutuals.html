@@ -24,7 +24,7 @@ body {
     min-height: 100vh;
 }
 
-/* Navbar */
+/* -------------------- NAVBAR -------------------- */
 .navbar {
     background: linear-gradient(135deg, var(--bg-lighter), var(--bg-light));
     padding: 15px 0;
@@ -34,34 +34,44 @@ body {
     top: 0;
     z-index: 1000;
 }
+
 .navbar nav {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column; /* stack logo above links */
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 15px;
-    flex-wrap: wrap;
 }
+
+/* Logo */
+.logo-container {
+    text-align: center;
+    margin-bottom: 10px;
+}
+.logo-image {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+}
+
+/* Nav Links */
 .nav-left {
     display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    transition: max-height 0.4s ease, opacity 0.4s ease;
-    overflow: hidden;
+    gap: 25px; /* space between links */
+    flex-wrap: wrap; /* wrap on very small screens */
+    justify-content: center;
 }
-.nav-left.show {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
+
 .nav-link {
     text-decoration: none;
     color: var(--text-body);
     font-weight: 600;
     padding: 10px 0;
     letter-spacing: 1px;
-    transition: color 0.3s, transform 0.3s, border-bottom 0.3s;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    transition: color 0.3s, transform 0.3s;
     cursor: pointer;
 }
 .nav-link:hover { 
@@ -73,24 +83,7 @@ body {
     border-bottom: 2px solid var(--text-heading);
 }
 
-/* Logo */
-.logo-container .logo-image {
-    width: 70px;
-    height: 70px;
-    object-fit: contain;
-}
-
-/* Hamburger */
-.hamburger {
-    display: none;
-    font-size: 1.5em;
-    cursor: pointer;
-    color: var(--text-body);
-    transition: color 0.3s ease;
-}
-.hamburger:hover { color: var(--accent-blue-start); }
-
-/* Mutuals container */
+/* -------------------- MUTUALS SECTION -------------------- */
 .mutuals-container {
     max-width: 1200px;
     margin: 50px auto;
@@ -173,12 +166,10 @@ body {
     .profiles-container { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width:768px) {
-    .hamburger { display: block; }
-    .nav-left { display: none; flex-direction: column; width: 100%; text-align: center; }
     .profiles-container { grid-template-columns: 1fr; }
 }
 @media (max-width:480px) {
-    .logo-container .logo-image { width: 60px; height: 60px; }
+    .logo-image { width: 60px; height: 60px; }
     .mutual-avatar { width: 80px; height: 80px; }
     .mutual-card { max-width: 180px; }
 }
@@ -197,9 +188,6 @@ body {
       <a href="highlights.html" class="nav-link">ALBUM</a>
       <a href="mutuals.html" class="nav-link active">MUTUALS</a>
       <a href="contacts.html" class="nav-link">CONTACT</a>
-    </div>
-    <div class="hamburger" id="hamburger">
-      <i class="fas fa-bars" id="hamburger-icon"></i>
     </div>
   </nav>
 </header>
@@ -239,30 +227,6 @@ body {
 </div>
 
 <script>
-// Hamburger toggle
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.getElementById('nav-links');
-const hamburgerIcon = document.getElementById('hamburger-icon');
-hamburger.addEventListener('click', () => {
-  navLinks.classList.toggle('show');
-  if(navLinks.classList.contains('show')){
-      hamburgerIcon.classList.remove('fa-bars');
-      hamburgerIcon.classList.add('fa-times');
-  } else {
-      hamburgerIcon.classList.remove('fa-times');
-      hamburgerIcon.classList.add('fa-bars');
-  }
-});
-
-// Navbar active link
-const navLinksArray = document.querySelectorAll('.nav-link');
-navLinksArray.forEach(link => {
-  link.addEventListener('click', () => {
-    navLinksArray.forEach(l => l.classList.remove('active'));
-    link.classList.add('active');
-  });
-});
-
 // Scroll-triggered fade-in for mutual cards
 const mutualCards = document.querySelectorAll('.mutual-card');
 function isInViewport(element) {
