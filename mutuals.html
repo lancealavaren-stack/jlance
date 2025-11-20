@@ -14,21 +14,22 @@
     --text-body: #4a5568;
     --accent-blue-start: #3498db;
     --accent-blue-end: #1f618d;
+    --shadow-light: rgba(0,188,212,0.3);
     --shadow-dark: rgba(0,0,0,0.1);
 }
 
-/* -------------------- BODY -------------------- */
+/* Body */
 body {
     font-family: 'Georgia', serif;
     margin: 0; padding: 0;
-    background: linear-gradient(135deg, #dbe6f1, #f5f7fa);
+    background: linear-gradient(135deg, var(--bg-lighter), var(--bg-light));
     min-height: 100vh;
 }
 
 /* -------------------- NAVBAR -------------------- */
 .navbar {
     background: linear-gradient(135deg, var(--bg-lighter), var(--bg-light));
-    padding: 15px 20px;
+    padding: 15px 0;
     box-shadow: 0 2px 6px var(--shadow-dark);
     position: sticky;
     top: 0;
@@ -37,20 +38,18 @@ body {
 
 .navbar nav {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between; /* logo left, links right */
-    max-width: 1200px;
-    margin: 0 auto;
-    flex-wrap: wrap;
 }
 
 .logo-container {
-    text-align: left;
+    margin-bottom: 10px;
+    text-align: center;
 }
 
 .logo-image {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     object-fit: contain;
 }
 
@@ -58,6 +57,8 @@ body {
     display: flex;
     gap: 25px;
     flex-wrap: wrap;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
 }
 
 .nav-link {
@@ -165,14 +166,12 @@ body {
 .mutual-link:hover { background: var(--accent-blue-start); color:#fff; }
 
 /* -------------------- RESPONSIVE -------------------- */
-@media (max-width:1024px) {
-    .profiles-container { grid-template-columns: repeat(2, 1fr); }
+@media (max-width:1024px) { .profiles-container { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width:768px) { 
+    .profiles-container { grid-template-columns: 1fr; } 
+    .logo-image { width: 90px; height: 90px; }
 }
-@media (max-width:768px) {
-    .profiles-container { grid-template-columns: 1fr; }
-    .logo-image { width: 80px; height: 80px; }
-}
-@media (max-width:480px) {
+@media (max-width:480px) { 
     .mutual-avatar { width: 80px; height: 80px; }
     .mutual-card { max-width: 180px; }
     .nav-container { gap: 10px; font-size: 0.8em; }
@@ -181,7 +180,7 @@ body {
 </head>
 <body>
 
-<!-- -------------------- NAVBAR -------------------- -->
+<!-- NAVBAR -->
 <header class="navbar">
   <nav>
     <div class="logo-container">
@@ -197,7 +196,7 @@ body {
   </nav>
 </header>
 
-<!-- -------------------- MUTUALS SECTION -------------------- -->
+<!-- MUTUALS SECTION -->
 <div class="mutuals-container">
   <h2 class="section-title">Mutual Friends</h2>
   <div class="profiles-container">
