@@ -14,11 +14,8 @@
     --text-body: #4a5568;
     --accent-blue-start: #3498db;
     --accent-blue-end: #1f618d;
-    --shadow-light: rgba(0,188,212,0.3);
     --shadow-dark: rgba(0,0,0,0.1);
 }
-
-html { scroll-behavior: smooth; }
 
 body {
     font-family: 'Poppins', sans-serif;
@@ -31,10 +28,10 @@ body {
     align-items: center;
 }
 
-/* Navbar */
+/* -------------------- NAVBAR -------------------- */
 .navbar {
     background: linear-gradient(135deg, var(--bg-lighter), var(--bg-light));
-    padding: 20px 0;
+    padding: 15px 0;
     box-shadow: 0 2px 6px var(--shadow-dark);
     position: sticky;
     top: 0;
@@ -44,74 +41,71 @@ body {
 
 .navbar nav {
     display: flex;
-    justify-content: center;
+    flex-direction: column; /* logo on top, links below */
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
-    flex-wrap: wrap;
-    position: relative; /* for absolute logo */
+    padding: 0 15px;
 }
 
 /* Logo */
 .logo-container {
-    position: absolute;
-    left: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
+    text-align: center;
+    margin-bottom: 10px;
 }
-.logo-container .logo-image {
-    width: 90px;
-    height: 90px;
+.logo-image {
+    width: 70px;
+    height: 70px;
     object-fit: contain;
 }
 
-/* Nav links */
+/* Nav Links */
 .nav-left {
     display: flex;
-    gap: 30px;
-    flex-wrap: wrap;
+    gap: 25px;
+    flex-wrap: wrap; /* wrap links on small screens */
     justify-content: center;
-    transition: max-height 0.4s ease, opacity 0.4s ease;
-    overflow: hidden;
 }
 
 .nav-link {
     text-decoration: none;
     color: var(--text-body);
     font-weight: 600;
-    padding-bottom: 5px;
+    padding: 10px 0;
     letter-spacing: 1px;
-    transition: color 0.3s, transform 0.3s, border-bottom 0.3s;
+    text-transform: uppercase;
+    transition: color 0.3s, transform 0.3s;
     cursor: pointer;
+    position: relative;
 }
 
+/* Underline hover animation */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: var(--text-heading);
+    transition: width 0.3s ease, left 0.3s ease;
+    transform: translateX(-50%);
+}
+.nav-link:hover::after {
+    width: 100%;
+    left: 50%;
+}
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* Hover scale */
 .nav-link:hover { 
     color: var(--text-heading); 
     transform: scale(1.05);
 }
 
-.nav-link.active { 
-    color: var(--text-heading); 
-    border-bottom: 2px solid var(--text-heading);
-}
-
-/* Hamburger */
-.hamburger {
-    display: none;
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 1.5em;
-    cursor: pointer;
-    color: var(--text-body);
-    transition: color 0.3s ease;
-}
-.hamburger:hover { color: var(--accent-blue-start); }
-
-/* Contact Section */
+/* -------------------- CONTACT SECTION -------------------- */
 .section-container {
     width: 95%;
     max-width: 900px;
@@ -126,7 +120,6 @@ body {
     margin-bottom: 40px; 
     text-align: center; 
     font-weight: bold;
-    width: 100%;
 }
 
 /* Form Box */
@@ -148,14 +141,12 @@ body {
   100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* Form Styling */
 #contact form {
     display: flex;
     flex-direction: column;
     gap: 20px;
     width: 100%;
 }
-
 #contact form > div {
     opacity: 0;
     animation: fadePop 0.8s forwards;
@@ -165,19 +156,16 @@ body {
 #contact form > div:nth-child(3) { animation-delay: 0.2s; }
 #contact form > div:nth-child(4) { animation-delay: 0.3s; }
 
-/* Inputs & Textarea */
 #contact input, #contact textarea {
     border: none;
     border-bottom: 2px solid var(--accent-blue-start);
-    border-radius: 0;
     background: transparent;
     padding: 12px 8px;
     font-size: 1em;
-    transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
     width: 100%;
     resize: none;
+    transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
 }
-
 #contact input:focus, #contact textarea:focus {
     outline: none;
     border-color: var(--accent-blue-end);
@@ -204,19 +192,23 @@ body {
     transform: scale(1.08);
 }
 
-/* Responsive Navbar */
-@media (max-width:900px) { 
-    .navbar nav { flex-wrap: wrap; gap: 15px; padding: 0 10px;}
-    .nav-left { max-height: 0; opacity: 0; flex-direction: column; width: 100%; margin-top: 10px; text-align: center; }
-    .nav-left.show { max-height: 500px; opacity: 1; }
-    .nav-left a { opacity:0; transform: translateY(-10px); transition: opacity 0.3s ease, transform 0.3s ease;}
-    .nav-left.show a { opacity:1; transform: translateY(0);}
-    .hamburger { display: block; }
+/* -------------------- MOBILE RESPONSIVE -------------------- */
+@media (max-width:768px) {
+    .nav-left {
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+    .section-title { font-size: 2em; }
+    #contact input, #contact textarea { font-size: 0.95em; }
+    .form-box { padding: 30px 20px; }
 }
-
-@media (max-width:600px) {
-    .section-title { font-size: 1.8em;}
-    .nav-link { font-size: 0.85em;}
+@media (max-width:480px) {
+    .logo-image { width: 60px; height: 60px; }
+    .nav-left { gap: 10px; }
+    .section-title { font-size: 1.8em; }
+    #contact input, #contact textarea { font-size: 0.9em; }
+    .form-box { padding: 25px 15px; }
+    #contact form button { padding: 10px 20px; font-size: 0.95em; }
 }
 </style>
 </head>
@@ -233,9 +225,6 @@ body {
       <a href="highlights.html" class="nav-link">ALBUM</a>
       <a href="mutuals.html" class="nav-link">MUTUALS</a>
       <a href="contacts.html" class="nav-link active">CONTACT</a>
-    </div>
-    <div class="hamburger" id="hamburger">
-      <i class="fas fa-bars" id="hamburger-icon"></i>
     </div>
   </nav>
 </header>
@@ -254,11 +243,11 @@ body {
         <label for="email">Email</label>
         <input type="email" id="email" name="email" required>
       </div>
-      <div class="full-width">
+      <div>
         <label for="message">Message</label>
         <textarea id="message" name="message" rows="5" required></textarea>
       </div>
-      <div class="full-width" style="text-align:center;">
+      <div style="text-align:center;">
         <button type="submit">Send Message</button>
         <p id="form-status" style="margin-top:10px; font-weight:bold;"></p>
       </div>
@@ -267,24 +256,6 @@ body {
 </section>
 
 <script>
-// Navbar Hamburger
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.getElementById('nav-links');
-const hamburgerIcon = document.getElementById('hamburger-icon');
-
-hamburger.addEventListener('click', () => {
-  navLinks.classList.toggle('show');
-  hamburgerIcon.classList.add('rotate');
-  setTimeout(() => {
-    if(navLinks.classList.contains('show')){
-      hamburgerIcon.classList.replace('fa-bars', 'fa-times');
-    } else {
-      hamburgerIcon.classList.replace('fa-times', 'fa-bars');
-    }
-    hamburgerIcon.classList.remove('rotate');
-  }, 200);
-});
-
 // Navbar active link
 document.querySelectorAll('.nav-link').forEach(link => {
   link.addEventListener('click', () => {
@@ -296,7 +267,6 @@ document.querySelectorAll('.nav-link').forEach(link => {
 // Contact Form Submission
 const form = document.getElementById('contact-form');
 const status = document.getElementById('form-status');
-
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
   const formData = new FormData(form);
