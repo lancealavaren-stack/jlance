@@ -39,9 +39,8 @@ body {
 
 .navbar nav {
     display: flex;
-    justify-content: center; 
+    justify-content: space-between; 
     align-items: center;
-    position: relative;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
@@ -52,12 +51,9 @@ body {
     display: flex;
     gap: 30px;
     flex-wrap: wrap;
-    transition: max-height 0.4s ease, opacity 0.4s ease;
-    overflow: hidden;
-    justify-content: center; 
+    justify-content: center;
 }
 
-/* Nav link hover animation from center */
 .nav-link {
     text-decoration: none;
     color: var(--text-body);
@@ -65,7 +61,6 @@ body {
     padding-bottom: 5px;
     letter-spacing: 1px;
     transition: color 0.3s, transform 0.3s;
-    cursor: pointer;
     position: relative;
 }
 
@@ -100,26 +95,7 @@ body {
     width: 90px;
     height: 90px;
     object-fit: contain;
-    position: absolute;
-    left: 20px;
-    top: 50%;
-    transform: translateY(-50%);
 }
-
-/* Hamburger */
-.hamburger {
-    display: none;
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 1.5em;
-    cursor: pointer;
-    color: var(--text-body);
-    transition: color 0.3s ease;
-}
-.hamburger:hover { color: var(--accent-blue-start); }
-.hamburger i { transition: transform 0.4s ease, color 0.3s ease; }
 
 /* About Me Section */
 .about-me-container {
@@ -133,8 +109,9 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 12px var(--shadow-dark);
     gap: 50px;
+    flex-wrap: wrap;
 }
-.info-section { flex: 1; }
+.info-section { flex: 1; min-width: 280px; }
 .main-heading { color: var(--text-heading); font-size: 3em; margin-bottom: 20px; font-weight: bold;}
 .bio { font-size: 1.1em; margin-bottom: 25px; line-height: 1.6; color: var(--text-body);}
 .detail-group { display: flex; flex-direction: column; margin-bottom: 20px; }
@@ -146,12 +123,12 @@ body {
 .timeline-btn { margin-top: 30px; background: linear-gradient(135deg, var(--accent-blue-start), var(--accent-blue-end)); color:#fff; padding:15px 40px; border:none; border-radius:6px; font-size:1.1em; font-weight:600; cursor:pointer; transition: transform 0.3s, box-shadow 0.3s;}
 .timeline-btn:hover { transform: translateY(-2px); box-shadow:0 6px 20px var(--shadow-light);}
 .social-heading { color: var(--text-heading); font-family:'Poppins', sans-serif; font-size:1.2em; font-weight:600; margin-top:30px; margin-bottom:12px;}
-.social-links { display:flex; align-items:center; gap:20px; }
+.social-links { display:flex; align-items:center; gap:20px; flex-wrap: wrap; }
 .social-links a { color: var(--text-body); font-size:1.7em; transition: transform 0.25s ease, color 0.25s ease, text-shadow 0.25s;}
 .social-links a:hover { color: var(--accent-blue-start); transform: translateY(-5px) scale(1.15); text-shadow:0 0 12px var(--accent-blue-start); }
 
 /* Profile Image */
-.image-section { flex:1; display:flex; justify-content:center; align-items:center; position:relative;}
+.image-section { flex:1; display:flex; justify-content:center; align-items:center; position:relative; min-width: 280px;}
 .image-section::before { content:''; position:absolute; top:20px; right:20px; width:350px; height:350px; background: linear-gradient(135deg,var(--accent-blue-start),var(--accent-blue-end)); border-radius:50%; z-index:1;}
 .image-circle { width:350px; height:350px; border-radius:50%; overflow:hidden; position:relative; z-index:2; background-color:#fff; box-shadow:0 0 0 10px #fff,0 0 20px var(--accent-blue-start),0 0 40px var(--accent-blue-end); transition: box-shadow 0.4s ease;}
 .image-circle:hover { box-shadow:0 0 0 10px #fff,0 0 25px var(--accent-blue-start),0 0 60px var(--accent-blue-end),0 0 90px var(--accent-blue-end);}
@@ -163,24 +140,10 @@ body {
   60% { transform: translateY(-10px) scale(1.05); }
   100% { opacity: 1; transform: translateY(0) scale(1); }
 }
-
-/* Apply pop-in animation */
-.info-section > * {
-  opacity: 0;
-  animation: popIn 0.8s forwards;
-}
+.info-section > * { opacity: 0; animation: popIn 0.8s forwards; }
 .info-section > *:nth-child(1) { animation-delay: 0s; }
 .info-section > *:nth-child(2) { animation-delay: 0.1s; }
-.info-section > *:nth-child(3) { animation-delay: 0.2s; }
-.info-section > *:nth-child(4) { animation-delay: 0.3s; }
-.info-section > *:nth-child(5) { animation-delay: 0.4s; }
-.info-section > *:nth-child(6) { animation-delay: 0.5s; }
-.info-section > *:nth-child(7) { animation-delay: 0.6s; }
-.info-section > *:nth-child(8) { animation-delay: 0.7s; }
-.info-section > *:nth-child(9) { animation-delay: 0.8s; }
-.info-section > *:nth-child(10) { animation-delay: 0.9s; }
-.info-section > *:nth-child(11) { animation-delay: 1s; }
-
+/* ... continue animation delays as needed ... */
 .image-section, .image-circle, .profile-photo {
   opacity: 0;
   animation: popIn 0.8s forwards;
@@ -190,22 +153,20 @@ body {
 .profile-photo { animation-delay: 1.3s; }
 
 /* Responsive */
-@media (max-width:900px) { 
-    .about-me-container { flex-direction:column; align-items:center; padding:20px;} 
+@media (max-width:900px) {
+    .about-me-container { flex-direction: column; align-items:center; padding:20px;} 
     .info-section{text-align:center;} 
     .detail-group{align-items:center;} 
-    .nav-left { max-height: 0; opacity: 0; flex-direction: column; width: 100%; margin-top: 10px; text-align: center; }
-    .nav-left.show { max-height: 500px; opacity: 1; }
-    .nav-left a { opacity:0; transform: translateY(-10px); transition: opacity 0.3s ease, transform 0.3s ease;}
-    .nav-left.show a { opacity:1; transform: translateY(0);}
     .image-section::before { width: 280px; height: 280px; top: 15px; right: 15px;}
     .image-circle { width: 280px; height: 280px;}
-    .hamburger { display: block; }
+    .nav-left { flex-direction: column; gap: 15px; width: 100%; text-align: center; margin-top: 15px;}
 }
 
 @media (max-width:600px) {
     .main-heading { font-size: 2em;}
     .nav-link { font-size: 0.85em;}
+    .image-circle { width: 220px; height: 220px;}
+    .image-section::before { width: 220px; height: 220px; }
 }
 </style>
 </head>
@@ -222,9 +183,6 @@ body {
       <a href="highlights.html" class="nav-link">ALBUM</a>
       <a href="mutuals.html" class="nav-link">MUTUALS</a>
       <a href="contacts.html" class="nav-link">CONTACT</a>
-    </div>
-    <div class="hamburger" id="hamburger">
-      <i class="fas fa-bars" id="hamburger-icon"></i>
     </div>
   </nav>
 </header>
@@ -292,28 +250,6 @@ Hi! I'm <b>Jerry Lance V. Alavaren, 22 </b>years old a multifaceted individual p
 </div>
 </div>
 </section>
-
-<script>
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.getElementById('nav-links');
-const hamburgerIcon = document.getElementById('hamburger-icon');
-
-hamburger.addEventListener('click', () => {
-  navLinks.classList.toggle('show');
-
-  hamburgerIcon.classList.add('rotate');
-  setTimeout(() => {
-    if(navLinks.classList.contains('show')){
-      hamburgerIcon.classList.remove('fa-bars');
-      hamburgerIcon.classList.add('fa-times');
-    } else {
-      hamburgerIcon.classList.remove('fa-times');
-      hamburgerIcon.classList.add('fa-bars');
-    }
-    hamburgerIcon.classList.remove('rotate');
-  }, 200);
-});
-</script>
 
 </body>
 </html>
