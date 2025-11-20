@@ -28,7 +28,7 @@ body {
 /* -------------------- NAVBAR -------------------- */
 .navbar {
     background: linear-gradient(135deg, var(--bg-lighter), var(--bg-light));
-    padding: 15px 0;
+    padding: 15px 20px;
     box-shadow: 0 2px 6px var(--shadow-dark);
     position: sticky;
     top: 0;
@@ -37,18 +37,20 @@ body {
 
 .navbar nav {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: space-between; /* logo left, links right */
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
 }
 
 .logo-container {
-    margin-bottom: 10px;
-    text-align: center;
+    text-align: left;
 }
 
 .logo-image {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     object-fit: contain;
 }
 
@@ -56,8 +58,6 @@ body {
     display: flex;
     gap: 25px;
     flex-wrap: wrap;
-    justify-content: center;
-    font-family: 'Poppins', sans-serif;
 }
 
 .nav-link {
@@ -170,10 +170,9 @@ body {
 }
 @media (max-width:768px) {
     .profiles-container { grid-template-columns: 1fr; }
-    .logo-image { width: 100px; height: 100px; }
+    .logo-image { width: 80px; height: 80px; }
 }
 @media (max-width:480px) {
-    .logo-image { width: 80px; height: 80px; }
     .mutual-avatar { width: 80px; height: 80px; }
     .mutual-card { max-width: 180px; }
     .nav-container { gap: 10px; font-size: 0.8em; }
@@ -182,6 +181,7 @@ body {
 </head>
 <body>
 
+<!-- -------------------- NAVBAR -------------------- -->
 <header class="navbar">
   <nav>
     <div class="logo-container">
@@ -197,6 +197,7 @@ body {
   </nav>
 </header>
 
+<!-- -------------------- MUTUALS SECTION -------------------- -->
 <div class="mutuals-container">
   <h2 class="section-title">Mutual Friends</h2>
   <div class="profiles-container">
