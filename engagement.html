@@ -18,56 +18,67 @@
     --shadow-dark: rgba(0,0,0,0.1);
 }
 
+/* Global Styles */
 body {
     font-family: 'Georgia', serif;
-    margin: 0;
-    padding: 0;
+    margin: 0; padding: 0;
     background: linear-gradient(135deg, var(--bg-lighter), var(--bg-light));
     min-height: 100vh;
 }
 
 /* Navbar */
 .navbar {
-    background: #fff;
-    padding: 10px 20px;
+    background: linear-gradient(135deg, var(--bg-lighter), var(--bg-light));
+    padding: 10px 0;
     box-shadow: 0 2px 6px var(--shadow-dark);
+    font-family: 'Poppins', sans-serif;
     position: sticky;
     top: 0;
     z-index: 1000;
 }
+
 .navbar nav {
     display: flex;
+    justify-content: space-between; 
     align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 15px;
+    flex-wrap: wrap;
 }
-.logo-container .logo-image {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-}
+
 .nav-left {
     display: flex;
-    gap: 25px;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
+
 .nav-link {
     text-decoration: none;
     color: var(--text-body);
     font-weight: 600;
-    position: relative;
-    padding-bottom: 4px;
+    padding-bottom: 5px;
+    letter-spacing: 1px;
     transition: color 0.3s, transform 0.3s;
+    position: relative;
 }
-.nav-link:hover {
-    color: var(--text-heading);
-    transform: scale(1.05);
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    left: 50%;
+    bottom: 0;
+    background-color: var(--text-heading);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
 }
-.nav-link.active {
-    color: var(--text-heading);
-    border-bottom: 2px solid var(--text-heading);
-}
+.nav-link:hover::after { width: 100%; }
+.nav-link:hover { color: var(--text-heading); transform: scale(1.05);}
+.nav-link.active { color: var(--text-heading); border-bottom: 2px solid var(--text-heading); }
+
+.logo-container .logo-image { width: 70px; height: 70px; object-fit: contain; }
 
 /* Hero Section */
 .hero-section {
@@ -110,16 +121,12 @@ body {
     justify-content: center;
 }
 .photo-circle { 
-    width: 200px; 
-    height: 200px; 
-    border-radius: 50%; 
-    overflow: hidden; 
+    width: 200px; height: 200px; 
+    border-radius: 50%; overflow: hidden; 
     border: 5px solid #fff; 
     box-shadow: 0 10px 30px rgba(0,0,0,0.25); 
     background: linear-gradient(135deg, var(--accent-blue-start), var(--accent-blue-end)); 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
+    display: flex; align-items: center; justify-content: center; 
 }
 .photo-circle img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
 .photo-circle:hover img { transform: scale(1.05); }
@@ -185,8 +192,7 @@ body {
 .engagement-card-wrapper:nth-child(3) { animation-delay: 0.8s; }
 
 .card-image-outside {
-    width: 120px;
-    height: 120px;
+    width: 120px; height: 120px;
     object-fit: cover;
     border-radius: 12px;
     border: 3px solid var(--text-heading);
@@ -205,10 +211,7 @@ body {
     padding:15px; 
     box-shadow:0 3px 10px rgba(0,0,0,0.1); 
     transition: transform 0.3s, box-shadow 0.3s; 
-    display: flex; 
-    flex-direction: column;  
-    justify-content: center;     
-    flex: 1;
+    display: flex; flex-direction: column; justify-content: center; flex: 1;
     text-align: left;
 }
 .engagement-card:hover { 
@@ -229,14 +232,8 @@ body {
     .photo-section-wrapper { flex-direction: column; gap: 15px; }
 }
 @media (max-width: 600px) {
-    .nav-left {
-        flex-direction: column;
-        gap: 12px;
-        width: 100%;
-        text-align: center;
-        margin-top: 10px;
-    }
-    .logo-container .logo-image { width: 70px; height: 70px; }
+    .nav-left { flex-direction: column; gap: 12px; width: 100%; text-align: center; margin-top: 10px; }
+    .logo-container .logo-image { width: 60px; height: 60px; }
     .cards-section-container { padding: 15px 10px; }
     .engagement-card-wrapper { max-width: 90%; margin: 0 auto; }
     .photo-circle { width: 150px; height: 150px; }
@@ -263,14 +260,11 @@ body {
 
 <section class="hero-section">
   <div class="hero-container">
-    <!-- Profile -->
     <div class="photo-section-wrapper">
       <div class="photo-circle">
-        <img src="lans.jpg.jpg" alt="Jerry Lance Profile">
+        <img src="lans.jpg.jpg" alt="Profile Photo">
       </div>
-      <div class="profile-dialogue" id="profileDialogue">
-        Hi! Welcome, my friends!! 👋
-      </div>
+      <div class="profile-dialogue" id="profileDialogue">Hi! Welcome, my friends!! 👋</div>
     </div>
 
     <!-- Cards Section -->
@@ -282,37 +276,33 @@ body {
             <img src="officer.jpg.jpg" alt="Card 1" class="card-image-outside">
             <div class="engagement-card">
               <h3 class="card-title">Student College Organization</h3>
-              <p class="card-description">Becoming a member of the college Organization for three years has changed everything. My confidence and leadership abilities have increased as a result, and I'm thrilled to have had the chance to improve personally. I'm excited to see where my adventure leads me next and am pleased of what I've done.</p>
+              <p class="card-description">Being part of college Organization for three years changed everything. My confidence and leadership increased, and I'm thrilled for personal growth.</p>
             </div>
           </div>
-
           <!-- Card 2 -->
           <div class="engagement-card-wrapper">
             <img src="pageant.jpg.png" alt="Card 2" class="card-image-outside">
             <div class="engagement-card">
               <h3 class="card-title">Pageantry</h3>
-              <p class="card-description">I stepped beyond my comfort zone and joined a pageant! I met amazing people and created priceless experiences and saw the support that my friends and family give on this journey. I'm pleased of myself for embracing the unknown and taking a risk; it gave me a lot more confidence.</p>
+              <p class="card-description">I joined a pageant, met amazing people, and gained confidence through new experiences and support from friends and family.</p>
             </div>
           </div>
-
           <!-- Card 3 -->
           <div class="engagement-card-wrapper">
             <img src="mc.jpg.jpg" alt="Card 3" class="card-image-outside">
             <div class="engagement-card">
               <h3 class="card-title">Master Of Ceremony</h3>
-              <p class="card-description">I had a great time serving as our college program's MC for two years! I thoroughly enjoyed the amazing event, which forced me to step outside of my comfort zone. I had the opportunity to meet a lot of amazing people, which truly aided in my own development. I'm glad I took the chance and tried it.</p>
+              <p class="card-description">Being an MC for two years pushed me out of my comfort zone, allowing me to meet amazing people and develop personally.</p>
             </div>
           </div>
         </div>
       </div>
     </div>
     <!-- End Cards Section -->
-
   </div>
 </section>
 
 <script>
-// Dialogue Messages
 const messages = ["These are my college Experiences👋","Feel free to explore! check out my gallery😄"];
 let index = 0;
 const dialogue = document.getElementById("profileDialogue");
