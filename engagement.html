@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Engagement</title>
+<title>About Me</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <style>
@@ -18,6 +18,7 @@
     --shadow-dark: rgba(0,0,0,0.1);
 }
 
+/* Global Styles */
 body {
     font-family: 'Georgia', serif;
     margin: 0; padding: 0;
@@ -25,7 +26,7 @@ body {
     min-height: 100vh;
 }
 
-/* Navbar */
+/* -------------------- NAVBAR -------------------- */
 .navbar {
     background: linear-gradient(135deg, var(--bg-lighter), var(--bg-light));
     padding: 15px 0;
@@ -39,25 +40,30 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center; /* centers logo and links vertically */
+    gap: 10px; /* space between logo and links */
 }
 
 .logo-container {
-    margin-bottom: 10px;
+    margin-bottom: 10px; /* space between logo and nav links */
     text-align: center;
 }
 
-.logo-image {
-    width: 120px;  /* increased from 80px */
-    height: 120px; /* increased from 80px */
-    object-fit: contain;
+/* Mobile screens */
+@media screen and (max-width: 600px) {
+    .logo-image {
+        width: 120px;  /* smaller logo for mobile */
+        height: 120px;
+    }
 }
 
 .nav-container {
     display: flex;
-    gap: 25px;
-    flex-wrap: wrap;
+    gap: 25px; /* desktop spacing between links */
     justify-content: center;
-    font-family: 'Poppins', sans-serif; /* updated to match MUTUALS */
+    align-items: center;
+    flex-wrap: wrap;
+    font-family: 'Poppins', sans-serif;
 }
 
 .nav-link {
@@ -83,142 +89,163 @@ body {
 }
 
 .nav-link:hover::after { width: 100%; }
-.nav-link:hover { color: var(--text-heading); transform: scale(1.05);}
+.nav-link:hover { color: var(--text-heading); transform: scale(1.05); }
 .nav-link.active { color: var(--text-heading); border-bottom: 2px solid var(--text-heading); }
 
-/* Hero Section */
-.hero-section {
-    position: relative;
-    padding: 40px 20px;
+/* Responsive Navbar */
+@media (max-width:600px) {
+    .logo-image { width: 90px; height: 90px; }
+    .nav-container { 
+        gap: 10px; 
+        font-size: 0.85em;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+/* -------------------- ABOUT ME SECTION -------------------- */
+.about-me-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 30px 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px var(--shadow-dark);
+    gap: 25px;
 }
 
-/* Profile Section */
-.photo-section-wrapper {
+.image-section {
+    width: 100%;
     display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.image-section::before {
+    content: '';
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    top: 0;
+    background: linear-gradient(135deg, var(--accent-blue-start), var(--accent-blue-end));
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.image-circle {
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+    background-color: #fff;
+    box-shadow: 0 0 0 10px #fff,
+                0 0 20px var(--accent-blue-start),
+                0 0 40px var(--accent-blue-end);
+    transition: box-shadow 0.4s ease;
+
+    display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 20px;
-    margin-bottom: 40px;
-    opacity: 0;
-    animation: popIn 0.8s forwards;
 }
 
-.photo-circle {
-    width: 200px; 
-    height: 200px; 
-    border-radius: 50%; 
-    overflow: hidden; 
-    border: 5px solid #fff; 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.25); 
-    background: linear-gradient(135deg, #6ba3d8, #8fc1e8); 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
+.image-circle:hover {
+    box-shadow: 0 0 0 10px #fff,
+                0 0 25px var(--accent-blue-start),
+                0 0 60px var(--accent-blue-end),
+                0 0 90px var(--accent-blue-end);
 }
 
-.photo-circle img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
-.photo-circle:hover img { transform: scale(1.05); }
+.profile-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%; /* ensures perfect circle */
+}
 
-.profile-dialogue {
-    background: #fff;
-    padding: 10px 16px;
-    border-radius: 20px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-    font-size: 0.9em;
-    color: #245585;
-    max-width: 200px;
+.info-section {
+    width: 100%;
     text-align: center;
 }
 
-/* Cards Section */
-.cards-section-container {
-    width: 100%;
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 20px 15px;
-    background: rgba(255, 255, 255, 0.85);
-    border-radius: 16px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+.main-heading { 
+    color: var(--text-heading); 
+    font-size: 2.3em; 
+    margin: 20px 0; 
+    font-weight: bold;
 }
 
-.cards-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
+.bio { 
+    font-size: 1.05em; 
+    margin-bottom: 25px; 
+    line-height: 1.6; 
+    color: var(--text-body);
 }
 
-.engagement-card-wrapper {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 15px;
-    max-width: 700px;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: cardPopIn 0.6s forwards;
+.detail-group { display: flex; flex-direction: column; margin-bottom: 20px; align-items:center;}
+.detail-label { display: flex; align-items: center; gap: 10px; font-weight: bold; font-size: 0.9em; color: var(--text-body);}
+.detail-label i { color: var(--accent-blue-start); font-size: 1.2em;}
+.detail-value { margin-top: 5px; font-size: 1.1em; color: var(--text-body);}
+.link-color.detail-value { color: var(--accent-blue-start); text-decoration: none;}
+.link-color.detail-value:hover { text-decoration: underline;}
+
+.timeline-btn { 
+    margin-top: 30px; 
+    background: linear-gradient(135deg, var(--accent-blue-start), var(--accent-blue-end)); 
+    color:#fff; 
+    padding:12px 35px; 
+    border:none; 
+    border-radius:6px; 
+    font-size:1.05em; 
+    font-weight:600; 
+    cursor:pointer; 
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.engagement-card-wrapper:nth-child(1) { animation-delay: 0.4s; }
-.engagement-card-wrapper:nth-child(2) { animation-delay: 0.6s; }
-.engagement-card-wrapper:nth-child(3) { animation-delay: 0.8s; }
-
-.card-image-outside {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 12px;
-    border: 3px solid #245585;
-    padding: 3px;
-    background: #fff;
-    flex-shrink: 0;
-    transition: transform 0.3s ease;
-    cursor: pointer;
+.timeline-btn:hover { 
+    transform: translateY(-2px); 
+    box-shadow:0 6px 20px var(--shadow-light);
 }
-.card-image-outside:hover { transform: scale(1.05); }
 
-.engagement-card {
-    background:#fff; 
-    border-radius:8px; 
-    border:3px solid orange;
-    padding:15px; 
-    box-shadow:0 3px 10px rgba(0,0,0,0.1); 
-    transition: transform 0.3s, box-shadow 0.3s; 
-    display: flex; 
-    flex-direction: column;  
-    justify-content: center;     
-    flex: 1;
-    text-align: left;
+.social-heading { 
+    color: var(--text-heading); 
+    font-family:'Poppins', sans-serif; 
+    font-size:1.2em; 
+    font-weight:600; 
+    margin-top:30px; 
+    margin-bottom:12px;
 }
-.engagement-card:hover { 
-    transform: translateY(-3px); 
-    box-shadow:0 6px 15px rgba(0,188,212,0.3); 
-}
-.card-title { font-size: 1.1em; font-weight: 600; margin: 0 0 6px 0; color: var(--text-heading); }
-.card-description { font-size: 0.9em; color: var(--text-body); line-height: 1.4; }
 
-/* Animations */
-@keyframes popIn { 0% { opacity:0; transform: translateY(20px); } 100% { opacity:1; transform: translateY(0); } }
-@keyframes cardPopIn { 0% { opacity:0; transform: translateY(20px); } 100% { opacity:1; transform: translateY(0); } }
+.social-links { display:flex; align-items:center; gap:20px; justify-content:center; flex-wrap: wrap; }
+.social-links a { color: var(--text-body); font-size:1.7em; transition: transform 0.25s ease, color 0.25s ease, text-shadow 0.25s;}
+.social-links a:hover { color: var(--accent-blue-start); transform: translateY(-5px) scale(1.15); text-shadow:0 0 12px var(--accent-blue-start); }
+
+/* Pop-in animation */
+@keyframes popIn {
+  0% { opacity: 0; transform: translateY(20px) scale(0.95); }
+  60% { transform: translateY(-10px) scale(1.05); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.info-section > * { opacity: 0; animation: popIn 0.8s forwards; }
+.info-section > *:nth-child(1) { animation-delay: 0.1s; }
+.info-section > *:nth-child(2) { animation-delay: 0.2s; }
+.image-section, .image-circle, .profile-photo { opacity: 0; animation: popIn 0.8s forwards;}
+.image-section { animation-delay: 0s; }
+.image-circle { animation-delay: 0.1s; }
+.profile-photo { animation-delay: 0.2s; }
 
 /* Responsive */
-@media (max-width:900px) {
-    .engagement-card-wrapper { flex-direction: column; text-align: center; }
-    .card-image-outside { width: 100px; height: 100px; }
-}
-
 @media (max-width:600px) {
-    .logo-image { width: 90px; height: 90px; } /* updated for mobile */
-    .nav-container { 
-        gap: 10px; 
-        font-size: 0.85em; 
-        font-family: 'Poppins', sans-serif; /* ensure consistency */
-    }
-    .photo-circle { width: 150px; height: 150px; }
-    .profile-dialogue { max-width: 160px; font-size: 0.85em; }
-    .cards-section-container { padding: 15px 10px; }
+    .main-heading { font-size: 2em;}
+    .image-circle { width: 160px; height: 160px; }
+    .image-section::before { width: 160px; height: 160px; }
+    .profile-photo { border-radius: 50%; }
+    .detail-value, .detail-label { font-size: 0.95em; }
 }
 </style>
 </head>
@@ -230,8 +257,8 @@ body {
       <img src="logo.png.png" alt="Logo" class="logo-image">
     </div>
     <div class="nav-container">
-      <a href="aboutme.html" class="nav-link">ABOUT ME</a>
-      <a href="engagement.html" class="nav-link active">ENGAGEMENT</a>
+      <a href="aboutme.html" class="nav-link active">ABOUT ME</a>
+      <a href="engagement.html" class="nav-link">ENGAGEMENT</a>
       <a href="highlights.html" class="nav-link">ALBUM</a>
       <a href="mutuals.html" class="nav-link">MUTUALS</a>
       <a href="contacts.html" class="nav-link">CONTACT</a>
@@ -239,47 +266,79 @@ body {
   </nav>
 </header>
 
-<section class="hero-section">
-  <div class="photo-section-wrapper">
-    <div class="photo-circle">
-      <img src="lans.jpg.jpg" alt="Jerry Lance Profile">
+<section class="about-me-container">
+  <div class="image-section">
+    <div class="image-circle">
+      <img src="lans.jpg.jpg" alt="Profile Photo" class="profile-photo">
     </div>
-    <div class="profile-dialogue">Hi! Welcome, my friends!! 👋</div>
   </div>
 
-  <div class="cards-section-container">
-    <div class="cards-container">
-      <!-- Card 1 -->
-      <div class="engagement-card-wrapper">
-        <img src="officer.jpg.jpg" alt="Card 1" class="card-image-outside">
-        <div class="engagement-card">
-          <h3 class="card-title">Student College Organization</h3>
-          <p class="card-description">Being part of the college organization for the past three years has been a total game-changer for me. It has helped me level up my confidence and leadership skills, and I’m grateful for the opportunity to grow and develop as a person. I’m proud of what I’ve accomplished, and I can’t wait to see where my journey takes me next.</p>
-        </div>
-      </div>
+  <div class="info-section">
+    <h1 class="main-heading">About Me</h1>
+    <p class="bio">
+      Hi! I'm <b>Jerry Lance V. Alavaren, 22 </b>years old, a multifaceted individual passionate about photography, cooking, fashion, and exploring stories through movies and series. The beach and matcha symbolize the calm, balance, and creativity I value in life.
+    </p>
 
-      <!-- Card 2 -->
-      <div class="engagement-card-wrapper">
-        <img src="pageant.jpg.png" alt="Card 2" class="card-image-outside">
-        <div class="engagement-card">
-          <h3 class="card-title">Pageantry</h3>
-          <p class="card-description">I totally stepped out of my comfort zone and joined a pageant! It was a wild ride, and I met incredible people whose support helped create unforgettable memories. I’m proud of myself for taking the leap and embracing the unknown it turned out to be a huge confidence booster.</p>
-        </div>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="engagement-card-wrapper">
-        <img src="mc.jpg.jpg" alt="Card 3" class="card-image-outside">
-        <div class="engagement-card">
-          <h3 class="card-title">Master Of Ceremony</h3>
-          <p class="card-description">As someone who used to be afraid of public speaking and crowds, and as a complete first-timer I still managed to rock being an MC for our college program for two years! It was an incredible experience that pushed me way out of my comfort zone, but I loved every minute of it. I met so many awesome people, and it really helped me grow as a person. I’m stoked that I took the chance and gave it a shot.</p>
-        </div>
-      </div>
+    <div class="detail-group">
+      <p class="detail-label"><i class="fas fa-school"></i> SCHOOL</p>
+      <p class="detail-value">Northern Iloilo State University (NISU)</p>
     </div>
+
+    <div class="detail-group">
+      <p class="detail-label"><i class="fas fa-user-friends"></i> PARENTS</p>
+      <p class="detail-value">Ronnie A. Alavaren (Farmer), Teresa V. Alavaren (Housewife)</p>
+    </div>
+
+    <div class="detail-group">
+      <p class="detail-label"><i class="fas fa-users"></i> SIBLINGS</p>
+      <p class="detail-value">Gabriel V. Alavren (Brother), Ronesa V. Alavaren (Sister)</p>
+    </div>
+
+    <div class="detail-group">
+      <p class="detail-label"><i class="fas fa-birthday-cake"></i> Birthdate</p>
+      <p class="detail-value">07/01/2003</p>
+    </div>
+
+    <div class="detail-group">
+      <p class="detail-label"><i class="fas fa-graduation-cap"></i> COLLEGE PROGRAM</p>
+      <p class="detail-value">Bachelor of Science in Information Technology</p>
+    </div>
+
+    <div class="detail-group">
+      <p class="detail-label"><i class="fas fa-code"></i> MAJOR</p>
+      <p class="detail-value">Web Development</p>
+    </div>
+
+    <div class="detail-group">
+      <p class="detail-label"><i class="fas fa-envelope"></i> EMAIL</p>
+      <a href="mailto:lancealavaren@gmail.com" class="detail-value link-color">lancealavaren@gmail.com</a>
+    </div>
+
+    <div class="detail-group">
+      <p class="detail-label"><i class="fas fa-phone"></i> PHONE</p>
+      <p class="detail-value">09307035437</p>
+    </div>
+
+    <h3 class="social-heading">Follow me on my social media</h3>
+    <div class="social-links">
+      <a href="https://www.instagram.com/lllncx_z?igsh=MXFkZWxyeWx6aXBtdg==" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.facebook.com/share/16ePa6HSyN/" target="_blank"><i class="fab fa-facebook"></i></a>
+    </div>
+
+    <button class="timeline-btn" onclick="window.location.href='timeline.html'">My Storyline</button>
   </div>
 </section>
 
+<script>
+  // Auto highlight active nav link
+  const currentPage = window.location.pathname.split("/").pop().toLowerCase();
+  const navLinks = document.querySelectorAll(".nav-link");
+  navLinks.forEach(link => {
+    const linkPage = link.getAttribute("href").split("/").pop().toLowerCase();
+    if(currentPage === linkPage) link.classList.add("active");
+    else link.classList.remove("active");
+  });
+</script>
+
 </body>
 </html>
-
-
