@@ -13,16 +13,50 @@
         min-height: 100vh;
     }
 
-    .container { max-width: 1200px; margin: 0 auto; padding: 60px 40px; }
+    .container { 
+        max-width: 1200px; 
+        margin: 0 auto; 
+        padding: 60px 20px; /* smaller padding for mobile */
+    }
 
-    .hero { display: flex; align-items: center; justify-content: space-between; gap: 60px; position: relative; }
+    .hero { 
+        display: flex; 
+        align-items: center; 
+        justify-content: space-between; 
+        gap: 60px; 
+        flex-wrap: wrap; /* allows stacking */
+    }
 
-    .content { flex: 1; max-width: 500px; animation: slideInLeft 1s ease-out; }
-    h1 { font-size: 4rem; color: #245585; margin-bottom: 20px; line-height: 1.1; font-weight: 400; animation: fadeIn 1.2s ease-out; }
-    .accent { width: 350px; height: 4px; background: linear-gradient(90deg, #f19967 0%, #e67e22 100%); margin: 30px 0; animation: slideInLeft 1.4s ease-out; }
-    .tagline { font-size: 1.15rem; color: #4a5568; line-height: 1.7; margin-bottom: 40px; font-family: 'Arial', sans-serif; animation: fadeIn 1.6s ease-out; }
+    .content { 
+        flex: 1; 
+        max-width: 500px; 
+        animation: slideInLeft 1s ease-out; 
+        text-align: left;
+    }
+    h1 { 
+        font-size: 4rem; 
+        color: #245585; 
+        margin-bottom: 20px; 
+        line-height: 1.1; 
+        font-weight: 400; 
+        animation: fadeIn 1.2s ease-out; 
+    }
+    .accent { 
+        width: 350px; 
+        height: 4px; 
+        background: linear-gradient(90deg, #f19967 0%, #e67e22 100%); 
+        margin: 30px 0; 
+        animation: slideInLeft 1.4s ease-out; 
+    }
+    .tagline { 
+        font-size: 1.15rem; 
+        color: #4a5568; 
+        line-height: 1.7; 
+        margin-bottom: 40px; 
+        font-family: 'Arial', sans-serif; 
+        animation: fadeIn 1.6s ease-out; 
+    }
 
-    /* Glassy 3D Modern Blue Button */
     .cta-button {
         display: inline-block; 
         padding: 16px 40px;
@@ -34,6 +68,7 @@
         backdrop-filter: blur(6px);
         box-shadow: 0 8px 25px rgba(0, 188, 212, 0.3), 0 4px 10px rgba(0,0,0,0.1);
         transition: all 0.4s ease;
+        text-align: center;
     }
     .cta-button:hover {
         transform: translateY(-3px) scale(1.05);
@@ -41,16 +76,15 @@
         box-shadow: 0 12px 30px rgba(0, 188, 212, 0.5), 0 6px 15px rgba(0,0,0,0.15);
     }
 
-    /* Image & Profile Section */
     .image-section {
         flex: 1;
         display: flex;
-        flex-direction: column;  /* stack profile and button vertically */
-        align-items: center;     /* center horizontally */
+        flex-direction: column; 
+        align-items: center; 
         justify-content: center;
-        gap: 30px;               /* space between profile and button */
-        position: relative;
+        gap: 20px;
         animation: slideInRight 1s ease-out;
+        text-align: center;
     }
 
     .image-wrapper {
@@ -59,7 +93,6 @@
         height: 450px;
     }
 
-    /* Circular glowing frame with synchronized pulsating */
     .image-wrapper::before {
         content: "";
         position: absolute;
@@ -71,22 +104,12 @@
         z-index: 0;
         box-shadow: 0 0 40px rgba(9, 48, 164, 0.8), 0 0 60px rgba(43, 4, 219, 0.5);
         animation: pulseFloat 6s ease-in-out infinite alternate;
-        transition: 0.4s ease;
     }
 
     .image-wrapper:hover::before {
         box-shadow: 0 0 70px rgb(25, 11, 160), 0 0 100px rgba(0,188,212,0.8);
     }
 
-    @keyframes pulseFloat {
-        0% { box-shadow: 0 0 35px rgba(0,188,212,0.7), 0 0 55px rgba(0,188,212,0.45); }
-        25% { box-shadow: 0 0 50px rgba(0,188,212,0.85), 0 0 75px rgba(0,188,212,0.6); }
-        50% { box-shadow: 0 0 45px rgba(0,188,212,0.8), 0 0 70px rgba(0,188,212,0.55); }
-        75% { box-shadow: 0 0 50px rgba(0,188,212,0.85), 0 0 75px rgba(0,188,212,0.6); }
-        100% { box-shadow: 0 0 40px rgba(0,188,212,0.8), 0 0 60px rgba(0,188,212,0.5); }
-    }
-
-    /* Logo & Profile */
     .logo-img {
         position: absolute;
         width: 100%;
@@ -98,18 +121,27 @@
         box-shadow: 0 25px 70px rgba(0,0,0,0.12);
         z-index: 1;
         animation: float-sync 6s ease-in-out infinite;
-        transition: transform 0.3s ease;
     }
-    .logo-img:hover { transform: scale(1.05); }
-
     .profile-image {
-        position: absolute; width: 85%; height: 85%; border-radius: 50%; object-fit: cover;
-        top: 50%; left: 50%; transform: translate(-50%,-50%);
+        position: absolute; 
+        width: 85%; 
+        height: 85%; 
+        border-radius: 50%; 
+        object-fit: cover;
+        top: 50%; 
+        left: 50%; 
+        transform: translate(-50%,-50%);
         z-index: 2;
-        transition: transform 0.4s ease;
         animation: float-sync 6s ease-in-out infinite;
     }
-    .profile-image:hover { transform: translate(-50%, -50%) scale(1.05); }
+
+    @keyframes pulseFloat {
+        0% { box-shadow: 0 0 35px rgba(0,188,212,0.7), 0 0 55px rgba(0,188,212,0.45); }
+        25% { box-shadow: 0 0 50px rgba(0,188,212,0.85), 0 0 75px rgba(0,188,212,0.6); }
+        50% { box-shadow: 0 0 45px rgba(0,188,212,0.8), 0 0 70px rgba(0,188,212,0.55); }
+        75% { box-shadow: 0 0 50px rgba(0,188,212,0.85), 0 0 75px rgba(0,188,212,0.6); }
+        100% { box-shadow: 0 0 40px rgba(0,188,212,0.8), 0 0 60px rgba(0,188,212,0.5); }
+    }
 
     @keyframes float-sync {
         0%, 100% { transform: translateY(0); }
@@ -122,26 +154,24 @@
     @keyframes slideInLeft { from{opacity:0;transform:translateX(-50px)} to{opacity:1;transform:translateX(0)} }
     @keyframes slideInRight { from{opacity:0;transform:translateX(50px)} to{opacity:1;transform:translateX(0)} }
 
-    /* Responsive */
+    /* Mobile Responsive */
     @media (max-width: 968px) { 
-        .hero { flex-direction: column; text-align: center; gap: 40px; } 
+        .hero { flex-direction: column; text-align: center; gap: 30px; } 
         h1 { font-size: 3rem; } 
         .content { max-width: 100%; } 
         .image-wrapper { width: 350px; height: 350px; } 
     }
     @media (max-width: 768px) { 
-        .container { padding: 40px 30px; } 
         h1 { font-size: 2.5rem; } 
         .tagline { font-size: 1.05rem; } 
-        .image-wrapper { width: 320px; height: 320px; } 
-        .cta-button { padding: 14px 35px; font-size: 0.95rem; } 
+        .image-wrapper { width: 280px; height: 280px; } 
+        .cta-button { padding: 14px 30px; font-size: 0.95rem; } 
     }
     @media (max-width: 480px) { 
-        .container { padding: 30px 20px; } 
         h1 { font-size: 2rem; } 
-        .tagline { font-size: 1rem; } 
-        .image-wrapper { width: 280px; height: 280px; } 
-        .cta-button { padding: 12px 30px; font-size: 0.9rem; } 
+        .tagline { font-size: 0.95rem; } 
+        .image-wrapper { width: 220px; height: 220px; } 
+        .cta-button { padding: 12px 25px; font-size: 0.9rem; } 
     }
 </style>
 </head>
@@ -153,17 +183,13 @@
             <h1>Jerry Lance V.<br>Alavaren</h1>
             <div class="accent"></div>
             <p class="tagline">My journey. My stories. All in the making.</p>
-            <!-- Removed the old button from here -->
         </div>
 
         <div class="image-section">
             <div class="image-wrapper">
-                <!-- Logo circular background -->
                 <img src="lans1.jpg.jpg" class="logo-img" alt="Logo Background">
-                <!-- Professional profile -->
                 <img src="logo.png.png" class="profile-image" alt="Professional Portrait">
             </div>
-            <!-- Button below the profile -->
             <a href="aboutme.html" class="cta-button">About Me</a>
         </div>
     </div>
