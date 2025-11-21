@@ -6,7 +6,6 @@
 <title>Album</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
 <style>
 :root {
     --bg-light: #f5f7fa;
@@ -25,7 +24,7 @@ body {
     min-height: 100vh;
 }
 
-/* -------------------- NAVBAR -------------------- */
+/* NAVBAR */
 .navbar {
     background: linear-gradient(135deg, var(--bg-lighter), var(--bg-light));
     padding: 15px 0;
@@ -43,16 +42,9 @@ body {
     gap: 10px;
 }
 
-.logo-container {
-    margin-bottom: 10px;
-    text-align: center;
-}
+.logo-container { margin-bottom: 10px; text-align: center; }
 
-.logo-image {
-    width: 150px;  
-    height: 150px;  
-    object-fit: contain;
-}
+.logo-image { width: 150px; height: 150px; object-fit: contain; }
 
 .nav-container {
     display: flex;
@@ -95,7 +87,7 @@ body {
     .nav-container { gap: 10px; font-size: 0.85em; justify-content: center; align-items: center; }
 }
 
-/* -------------------- GALLERY SECTION -------------------- */
+/* GALLERY SECTION */
 .white-container {
     width: 95%;
     max-width: 1200px;
@@ -114,14 +106,17 @@ body {
     font-family: "Poppins";
 }
 
+/* Grid for 10 images */
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-template-columns: repeat(5, 1fr); /* 5 columns desktop */
+    grid-auto-rows: 180px;
     gap: 12px;
 }
 
 .gallery-grid img {
     width: 100%;
+    height: 100%;
     border-radius: 12px;
     object-fit: cover;
     transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.6s ease;
@@ -152,10 +147,7 @@ body {
     transition: opacity 0.4s ease;
 }
 
-.lightbox.active {
-    opacity: 1;
-    pointer-events: all;
-}
+.lightbox.active { opacity: 1; pointer-events: all; }
 
 .lightbox-img {
     max-width: 90%;
@@ -200,24 +192,9 @@ body {
 }
 
 /* Responsive Grid */
-@media (max-width: 1024px) {
-    .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
-}
-
-@media (max-width: 768px) {
-    .white-container { padding: 15px; margin: 20px auto; }
-    .white-title { font-size: 24px; margin-bottom: 15px; }
-    .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; }
-    .lightbox .close { font-size: 25px; top: 15px; right: 15px; }
-    .lightbox .prev, .lightbox .next { font-size: 35px; padding: 5px; }
-}
-
-@media (max-width: 480px) {
-    .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 6px; }
-    .logo-image { width: 120px; height: 120px; }
-    .nav-link { font-size: 0.75em; }
-    .nav-container { flex-wrap: wrap; gap: 15px; }
-}
+@media (max-width: 1024px) { .gallery-grid { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 150px; } }
+@media (max-width: 768px)  { .gallery-grid { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 120px; } }
+@media (max-width: 480px)  { .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 100px; } }
 </style>
 </head>
 
@@ -242,16 +219,16 @@ body {
     <h2 class="white-title">Gallery</h2>
 
     <div class="gallery-grid">
-        <img src="land1.jpg.jpg" alt="Gallery Image 1">
-        <img src="land2.jpg (2).jpg" alt="Gallery Image 2">
-        <img src="land7.jpg.jpg" alt="Gallery Image 3">
-        <img src="land4.jpg.jpg" alt="Special Moment">
-        <img src="land5.jpg.jpg" alt="Captured Love">
-        <img src="land6.jpg.jpg" alt="Forever Memory">
-        <img src="land3.jpg.jpg" alt="Golden Hour">
-        <img src="land8.jpg.jpg" alt="Gallery Image 4">
-        <img src="land9.jpg.jpg" alt="Gallery Image 5">
-        <img src="land10.jpg.jpg" alt="Gallery Image 6">
+        <img src="land1.jpg.jpg" alt="Gallery 1">
+        <img src="land2.jpg.jpg" alt="Gallery 2">
+        <img src="land3.jpg.jpg" alt="Gallery 3">
+        <img src="land4.jpg.jpg" alt="Gallery 4">
+        <img src="land5.jpg.jpg" alt="Gallery 5">
+        <img src="land6.jpg.jpg" alt="Gallery 6">
+        <img src="land7.jpg.jpg" alt="Gallery 7">
+        <img src="land8.jpg.jpg" alt="Gallery 8">
+        <img src="land9.jpg.jpg" alt="Gallery 9">
+        <img src="land10.jpg.jpg" alt="Gallery 10">
     </div>
 </div>
 
@@ -263,13 +240,12 @@ body {
 </div>
 
 <script>
-// Auto highlight active nav link
+// Highlight active nav link
 const currentPage = window.location.pathname.split("/").pop().toLowerCase();
 const navLinks = document.querySelectorAll(".nav-link");
 navLinks.forEach(link => {
     const linkPage = link.getAttribute("href").split("/").pop().toLowerCase();
-    if(currentPage === linkPage) link.classList.add("active");
-    else link.classList.remove("active");
+    link.classList.toggle("active", currentPage === linkPage);
 });
 
 // Lightbox functionality
@@ -300,21 +276,12 @@ prevBtn.addEventListener('click', () => {
 });
 lightbox.addEventListener('click', e => { if(e.target === lightbox) lightbox.classList.remove('active'); });
 
-// Adjust grid items height for masonry effect
-function resizeAllGridItems() {
-    const allItems = document.querySelectorAll('.gallery-grid img');
-    allItems.forEach(item => {
-        const rowHeight = parseInt(window.getComputedStyle(item.parentNode).getPropertyValue('grid-auto-rows'));
-        const rowGap = parseInt(window.getComputedStyle(item.parentNode).getPropertyValue('gap'));
-        const itemHeight = item.getBoundingClientRect().height;
-        const rowSpan = Math.ceil((itemHeight + rowGap) / (rowHeight + rowGap));
-        item.style.gridRowEnd = "span " + rowSpan;
-        item.style.opacity = 1;
+// Fade-in on load
+window.addEventListener('load', () => {
+    galleryImages.forEach((img, i) => {
+        setTimeout(() => { img.style.opacity = 1; }, i * 150);
     });
-}
-
-window.addEventListener('load', resizeAllGridItems);
-window.addEventListener('resize', resizeAllGridItems);
+});
 </script>
 
 </body>
