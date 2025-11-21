@@ -16,15 +16,16 @@
     .container { 
         max-width: 1200px; 
         margin: 0 auto; 
-        padding: 60px 20px; /* smaller padding for mobile */
+        padding: 60px 20px;
     }
 
     .hero { 
         display: flex; 
         align-items: center; 
-        justify-content: space-between; 
+        justify-content: center; 
+        flex-direction: row; 
         gap: 60px; 
-        flex-wrap: wrap; /* allows stacking */
+        flex-wrap: wrap; /* allow stacking on smaller screens */
     }
 
     .content { 
@@ -33,6 +34,7 @@
         animation: slideInLeft 1s ease-out; 
         text-align: left;
     }
+
     h1 { 
         font-size: 4rem; 
         color: #245585; 
@@ -41,6 +43,7 @@
         font-weight: 400; 
         animation: fadeIn 1.2s ease-out; 
     }
+
     .accent { 
         width: 350px; 
         height: 4px; 
@@ -48,6 +51,7 @@
         margin: 30px 0; 
         animation: slideInLeft 1.4s ease-out; 
     }
+
     .tagline { 
         font-size: 1.15rem; 
         color: #4a5568; 
@@ -60,7 +64,10 @@
     .cta-button {
         display: inline-block; 
         padding: 16px 40px;
-        font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+        font-size: 1rem; 
+        font-weight: 600; 
+        text-transform: uppercase; 
+        letter-spacing: 1px;
         border-radius: 50px;
         text-decoration: none;
         color: white;
@@ -69,6 +76,7 @@
         box-shadow: 0 8px 25px rgba(0, 188, 212, 0.3), 0 4px 10px rgba(0,0,0,0.1);
         transition: all 0.4s ease;
         text-align: center;
+        margin-top: 20px;
     }
     .cta-button:hover {
         transform: translateY(-3px) scale(1.05);
@@ -122,6 +130,7 @@
         z-index: 1;
         animation: float-sync 6s ease-in-out infinite;
     }
+
     .profile-image {
         position: absolute; 
         width: 85%; 
@@ -154,12 +163,13 @@
     @keyframes slideInLeft { from{opacity:0;transform:translateX(-50px)} to{opacity:1;transform:translateX(0)} }
     @keyframes slideInRight { from{opacity:0;transform:translateX(50px)} to{opacity:1;transform:translateX(0)} }
 
-    /* Mobile Responsive */
+    /* Mobile & Tablet Responsive */
     @media (max-width: 968px) { 
         .hero { flex-direction: column; text-align: center; gap: 30px; } 
         h1 { font-size: 3rem; } 
-        .content { max-width: 100%; } 
+        .accent { margin: 20px auto; }
         .image-wrapper { width: 350px; height: 350px; } 
+        .content { max-width: 100%; }
     }
     @media (max-width: 768px) { 
         h1 { font-size: 2.5rem; } 
