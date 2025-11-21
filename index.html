@@ -6,51 +6,45 @@
 <title>Homepage</title>
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     body {
         font-family: 'Georgia', serif;
         background: linear-gradient(135deg, #e8eef2 0%, #f5f7fa 100%);
         min-height: 100vh;
     }
-
     .container { 
         max-width: 1200px; 
         margin: 0 auto; 
         padding: 60px 20px;
     }
-
     .hero { 
         display: flex; 
         align-items: center; 
-        justify-content: space-between; 
+        justify-content: center; 
+        flex-direction: row; 
+        gap: 60px; 
         flex-wrap: wrap;
-        gap: 40px;
     }
-
     .content { 
-        flex: 1 1 400px; 
+        flex: 1; 
         max-width: 500px; 
         animation: slideInLeft 1s ease-out; 
-        text-align: center;
     }
-
     h1 { 
-        font-size: 3.5rem; 
+        font-size: 4rem; 
         color: #245585; 
         margin-bottom: 20px; 
-        line-height: 1.2; 
+        line-height: 1.1; 
         font-weight: 400; 
         animation: fadeIn 1.2s ease-out; 
+        text-align: center; /* centers the h1 */
     }
-
     .accent { 
         width: 350px; 
         height: 4px; 
         background: linear-gradient(90deg, #f19967 0%, #e67e22 100%); 
-        margin: 30px auto; 
+        margin: 30px auto; /* center the accent line */
         animation: slideInLeft 1.4s ease-out; 
     }
-
     .cta-button {
         display: inline-block; 
         padding: 16px 40px;
@@ -65,33 +59,29 @@
         backdrop-filter: blur(6px);
         box-shadow: 0 8px 25px rgba(0, 188, 212, 0.3), 0 4px 10px rgba(0,0,0,0.1);
         transition: all 0.4s ease;
-        margin-top: 20px;
         text-align: center;
+        margin-top: 20px;
     }
-
     .cta-button:hover {
         transform: translateY(-3px) scale(1.05);
         background: linear-gradient(135deg, rgba(0,242,254,0.9) 0%, rgba(79,172,254,0.9) 100%);
         box-shadow: 0 12px 30px rgba(0, 188, 212, 0.5), 0 6px 15px rgba(0,0,0,0.15);
     }
-
     .image-section {
-        flex: 1 1 350px;
+        flex: 1;
         display: flex;
         flex-direction: column; 
         align-items: center; 
         justify-content: center;
         gap: 20px;
         animation: slideInRight 1s ease-out;
+        text-align: center;
     }
-
     .image-wrapper {
         position: relative;
-        width: 400px;
-        max-width: 100%;
-        aspect-ratio: 1 / 1;
+        width: 450px;
+        height: 450px;
     }
-
     .image-wrapper::before {
         content: "";
         position: absolute;
@@ -104,12 +94,10 @@
         box-shadow: 0 0 40px rgba(9, 48, 164, 0.8), 0 0 60px rgba(43, 4, 219, 0.5);
         animation: pulseFloat 6s ease-in-out infinite alternate;
     }
-
     .image-wrapper:hover::before {
         box-shadow: 0 0 70px rgb(25, 11, 160), 0 0 100px rgba(0,188,212,0.8);
     }
-
-    .logo-img, .profile-image {
+    .logo-img {
         position: absolute;
         width: 100%;
         height: 100%;
@@ -117,19 +105,22 @@
         left: 0;
         object-fit: cover;
         border-radius: 50%;
+        box-shadow: 0 25px 70px rgba(0,0,0,0.12);
         z-index: 1;
         animation: float-sync 6s ease-in-out infinite;
     }
-
     .profile-image {
-        width: 85%;
-        height: 85%;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        position: absolute; 
+        width: 85%; 
+        height: 85%; 
+        border-radius: 50%; 
+        object-fit: cover;
+        top: 50%; 
+        left: 50%; 
+        transform: translate(-50%,-50%);
         z-index: 2;
+        animation: float-sync 6s ease-in-out infinite;
     }
-
     @keyframes pulseFloat {
         0% { box-shadow: 0 0 35px rgba(0,188,212,0.7), 0 0 55px rgba(0,188,212,0.45); }
         25% { box-shadow: 0 0 50px rgba(0,188,212,0.85), 0 0 75px rgba(0,188,212,0.6); }
@@ -137,50 +128,44 @@
         75% { box-shadow: 0 0 50px rgba(0,188,212,0.85), 0 0 75px rgba(0,188,212,0.6); }
         100% { box-shadow: 0 0 40px rgba(0,188,212,0.8), 0 0 60px rgba(0,188,212,0.5); }
     }
-
     @keyframes float-sync {
         0%, 100% { transform: translateY(0); }
         25% { transform: translate(5px, -5px); }
         50% { transform: translateY(-10px); }
         75% { transform: translate(-5px, -5px); }
     }
-
     @keyframes fadeIn { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
     @keyframes slideInLeft { from{opacity:0;transform:translateX(-50px)} to{opacity:1;transform:translateX(0)} }
     @keyframes slideInRight { from{opacity:0;transform:translateX(50px)} to{opacity:1;transform:translateX(0)} }
-
-    /* Responsive */
-    @media (max-width: 1024px) {
-        h1 { font-size: 3rem; }
-        .accent { width: 280px; }
-        .image-wrapper { width: 300px; height: 300px; }
+    /* Mobile & Tablet Responsive */
+    @media (max-width: 968px) { 
+        .hero { flex-direction: column; text-align: center; gap: 30px; } 
+        h1 { font-size: 3rem; } 
+        .accent { width: 250px; margin: 20px auto; } 
+        .image-wrapper { width: 350px; height: 350px; } 
+        .content { max-width: 100%; }
     }
-
-    @media (max-width: 768px) {
-        .hero { flex-direction: column; text-align: center; gap: 30px; }
-        h1 { font-size: 2.5rem; }
-        .accent { width: 220px; }
-        .image-wrapper { width: 250px; height: 250px; }
-        .cta-button { padding: 14px 30px; font-size: 0.95rem; }
+    @media (max-width: 768px) { 
+        h1 { font-size: 2.5rem; } 
+        .accent { width: 200px; margin: 15px auto; } 
+        .image-wrapper { width: 280px; height: 280px; } 
+        .cta-button { padding: 14px 30px; font-size: 0.95rem; } 
     }
-
-    @media (max-width: 480px) {
-        h1 { font-size: 1.8rem; }
-        .accent { width: 150px; }
-        .image-wrapper { width: 180px; height: 180px; }
-        .cta-button { padding: 12px 25px; font-size: 0.9rem; }
+    @media (max-width: 480px) { 
+        h1 { font-size: 2rem; } 
+        .accent { width: 150px; margin: 10px auto; } 
+        .image-wrapper { width: 220px; height: 220px; } 
+        .cta-button { padding: 12px 25px; font-size: 0.9rem; } 
     }
 </style>
 </head>
 <body>
-
 <div class="container">
     <div class="hero">
         <div class="content">
             <h1>Exploring Ideas, Sharing Stories, and Growing Every Day.</h1>
             <div class="accent"></div>
         </div>
-
         <div class="image-section">
             <div class="image-wrapper">
                 <img src="lans1.jpg.jpg" class="logo-img" alt="Logo Background">
@@ -190,6 +175,5 @@
         </div>
     </div>
 </div>
-
 </body>
 </html>
