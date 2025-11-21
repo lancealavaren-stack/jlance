@@ -40,25 +40,24 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* centers logo and links vertically */
-    gap: 10px; /* space between logo and links */
+    justify-content: center;
+    gap: 10px;
 }
 
 .logo-container {
-    margin-bottom: 10px; /* space between logo and nav links */
     text-align: center;
+    margin-bottom: 10px;
 }
 
-/* Mobile screens */
-@media screen and (max-width: 600px) {
-    .logo-image {
-        width: 120px;  /* smaller logo for mobile */
-        height: 120px;
+.logo-image {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
 }
 
 .nav-container {
     display: flex;
-    gap: 25px; /* desktop spacing between links */
+    gap: 25px;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
@@ -91,33 +90,23 @@ body {
 .nav-link:hover { color: var(--text-heading); transform: scale(1.05); }
 .nav-link.active { color: var(--text-heading); border-bottom: 2px solid var(--text-heading); }
 
-/* Responsive Navbar */
-@media (max-width:600px) {
-    .logo-image { width: 90px; height: 90px; }
-    .nav-container { 
-        gap: 10px; 
-        font-size: 0.85em;
-        justify-content: center;
-        align-items: center;
-    }
-}
-
 /* -------------------- ABOUT ME SECTION -------------------- */
 .about-me-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 900px;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    max-width: 1000px;
     margin: 60px auto;
     padding: 30px 15px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 12px var(--shadow-dark);
-    gap: 25px;
+    gap: 50px;
 }
 
 .image-section {
-    width: 100%;
+    flex: 0 0 300px;
     display: flex;
     justify-content: center;
     position: relative;
@@ -157,8 +146,8 @@ body {
 }
 
 .info-section {
-    width: 100%;
-    text-align: center;
+    flex: 1 1 500px;
+    text-align: left;
 }
 
 .main-heading { 
@@ -175,7 +164,7 @@ body {
     color: var(--text-body);
 }
 
-.detail-group { display: flex; flex-direction: column; margin-bottom: 20px; align-items:center;}
+.detail-group { display: flex; flex-direction: column; margin-bottom: 20px; }
 .detail-label { display: flex; align-items: center; gap: 10px; font-weight: bold; font-size: 0.9em; color: var(--text-body);}
 .detail-label i { color: var(--accent-blue-start); font-size: 1.2em;}
 .detail-value { margin-top: 5px; font-size: 1.1em; color: var(--text-body);}
@@ -209,7 +198,7 @@ body {
     margin-bottom:12px;
 }
 
-.social-links { display:flex; align-items:center; gap:20px; justify-content:center; flex-wrap: wrap; }
+.social-links { display:flex; align-items:center; gap:20px; justify-content:flex-start; flex-wrap: wrap; }
 .social-links a { color: var(--text-body); font-size:1.7em; transition: transform 0.25s ease, color 0.25s ease, text-shadow 0.25s;}
 .social-links a:hover { color: var(--accent-blue-start); transform: translateY(-5px) scale(1.15); text-shadow:0 0 12px var(--accent-blue-start); }
 
@@ -228,12 +217,25 @@ body {
 .image-circle { animation-delay: 0.1s; }
 .profile-photo { animation-delay: 0.2s; }
 
-/* Responsive */
-@media (max-width:600px) {
-    .main-heading { font-size: 2em;}
-    .image-circle { width: 180px; height: 180px;}
+/* -------------------- RESPONSIVE -------------------- */
+@media (max-width: 768px) {
+    .about-me-container { flex-direction: column; align-items: center; text-align: center; gap: 30px; padding: 20px 15px;}
+    .image-section { flex: none; }
+    .info-section { flex: none; width: 100%; }
+    .main-heading { font-size: 2em; }
+    .bio { font-size: 1em; }
+    .image-circle { width: 180px; height: 180px; }
     .image-section::before { width: 180px; height: 180px; top: 0; }
-    .detail-value, .detail-label { font-size: 0.95em; }
+    .social-links { justify-content: center; }
+}
+
+@media (max-width: 480px) {
+    .main-heading { font-size: 1.8em; }
+    .bio { font-size: 0.95em; }
+    .image-circle { width: 140px; height: 140px; }
+    .image-section::before { width: 140px; height: 140px; top: 0; }
+    .logo-image { width: 90px; height: 90px; }
+    .nav-container { gap: 10px; font-size: 0.85em; justify-content: center; }
 }
 </style>
 </head>
@@ -264,7 +266,7 @@ body {
   <div class="info-section">
     <h1 class="main-heading">About Me</h1>
     <p class="bio">
-      Hi! I'm <b>Jerry Lance V. Alavaren, 22 </b>years old, a multifaceted individual passionate about photography, cooking, fashion, and exploring stories through movies and series. The beach and matcha symbolize the calm, balance, and creativity I value in life.
+      Hi! I'm <b>Jerry Lance V. Alavaren, 22 </b>years old, passionate about photography, cooking, fashion, and exploring stories through movies and series. The beach and matcha symbolize the calm, balance, and creativity I value in life.
     </p>
 
     <div class="detail-group">
@@ -330,5 +332,3 @@ body {
 
 </body>
 </html>
-
-
