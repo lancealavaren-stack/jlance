@@ -50,18 +50,24 @@ body {
 }
 .nav-left {
     display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
+    flex-direction: row;    /* horizontal links */
+    flex-wrap: nowrap;      /* never stack */
+    gap: 15px;
     justify-content: center;
+    align-items: center;
+    width: 100%;
+    overflow-x: auto;       /* scroll if too long */
+    -webkit-overflow-scrolling: touch;
 }
+.nav-left::-webkit-scrollbar { display: none; } /* hide scrollbar on WebKit */
 .nav-link {
     text-decoration: none;
     color: var(--text-body);
     font-weight: 600;
-    padding-bottom: 5px;
+    padding: 5px 8px;
     letter-spacing: 1px;
     transition: color 0.3s, transform 0.3s, border-bottom 0.3s;
-    cursor: pointer;
+    white-space: nowrap;
 }
 .nav-link:hover {
     color: var(--text-heading);
@@ -241,32 +247,15 @@ body {
 .modal-close { position: absolute; top: 20px; right: 25px; color: #fff; font-size: 35px; font-weight: bold; cursor: pointer; transition: color 0.3s; }
 .modal-close:hover { color: #f1f1f1; }
 
-/* Responsive (Mobile-friendly, horizontal navbar) */
+/* Responsive (Cards & Profile) */
 @media (max-width: 900px) {
     .engagement-card-wrapper { flex-direction: column; text-align: center; }
     .card-image-outside { width: 100px; height: 100px; }
 }
 @media (max-width: 600px) {
-    /* Navbar horizontal links */
-    .navbar nav { flex-direction: column; align-items: center; padding: 10px; }
-    .nav-left {
-        flex-direction: row;   /* horizontal */
-        flex-wrap: wrap;       /* wrap if needed */
-        gap: 10px;
-        justify-content: center;
-        width: 100%;
-    }
-    .nav-link { font-size: 0.85em; padding: 8px 5px; text-align: center; }
-
-    /* Logo size */
-    .logo-container .logo-image { width: 120px; height: auto; margin-bottom: 10px; }
-
-    /* Hero / Profile Section */
     .photo-section-wrapper { flex-direction: column; gap: 15px; }
     .photo-circle { width: 140px; height: 140px; }
     .profile-dialogue { max-width: 160px; font-size: 0.85em; }
-
-    /* Cards Section */
     .cards-section-container { padding: 15px 10px; }
     .engagement-card-wrapper { flex-direction: column; text-align: center; max-width: 100%; }
     .card-image-outside { width: 100%; max-width: 180px; height: auto; margin: 0 auto; }
