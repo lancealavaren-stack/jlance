@@ -89,40 +89,11 @@ body {
     .nav-container { gap: 10px; font-size: 0.85em; justify-content: center; align-items: center; }
 }
 
-/* -------------------- HERO / PROFILE SECTION -------------------- */
-.hero-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 50px 20px;
-    gap: 40px;
-}
-
-.photo-circle { 
-    width: 200px; 
-    height: 200px; 
-    border-radius: 50%; 
-    overflow: hidden; 
-    border: 5px solid #fff; 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.25); 
-}
-.photo-circle img { width: 100%; height: 100%; object-fit: cover; }
-
-.profile-dialogue {
-    background: #fff;
-    padding: 10px 16px;
-    border-radius: 20px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-    font-size: 0.9em;
-    color: #245585;
-    max-width: 220px;
-    text-align: center;
-    margin-top: 10px;
-}
-
+/* -------------------- CARDS SECTION -------------------- */
 .cards-section-container {
     width: 100%;
     max-width: 1000px;
+    margin: 50px auto;
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -132,6 +103,7 @@ body {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 .card-image-outside {
@@ -155,7 +127,6 @@ body {
 .card-description { font-size: 0.9em; color: var(--text-body); line-height: 1.4; }
 
 @media (max-width:600px) {
-    .photo-circle { width: 140px; height: 140px; }
     .card-image-outside { width: 100px; height: 100px; }
     .engagement-card-wrapper { flex-direction: column; text-align: center; align-items: center; }
 }
@@ -178,18 +149,12 @@ body {
   </nav>
 </header>
 
-<section class="hero-section">
-  <div class="photo-circle">
-    <img src="lans.jpg.jpg" alt="Jerry Lance Profile">
-  </div>
-  <div class="profile-dialogue"> My college highlights👋</div>
-
-  <div class="cards-section-container">
+<section class="cards-section-container">
     <div class="engagement-card-wrapper">
       <img src="officer.jpg.jpg" alt="Card 1" class="card-image-outside">
       <div class="engagement-card">
         <h3 class="card-title">Student College Organization</h3>
-        <p class="card-description">Being part of this college organization for the past three years has been a total game-changer.It has helped me level up my confidence and leadership skills, and I’m grateful for the opportunity to grow and develop as a person. I’m proud of what I’ve accomplished and excited to see where this journey takes me next.</p>
+        <p class="card-description">Being part of this college organization for the past three years has been a total game-changer. It has helped me level up my confidence and leadership skills, and I’m grateful for the opportunity to grow and develop as a person. I’m proud of what I’ve accomplished and excited to see where this journey takes me next.</p>
       </div>
     </div>
 
@@ -197,7 +162,7 @@ body {
       <img src="pageant.jpg.png" alt="Card 2" class="card-image-outside">
       <div class="engagement-card">
         <h3 class="card-title">Pageantry</h3>
-        <p class="card-description">I completely stepped out of my comfort zone and joined a pageant.It was an incredible experience where I met amazing people and created unforgettable memories. Seeing the support and belief from those who stood by me that day meant the world. I’m proud of myself for taking the leap and embracing the unknownit truly boosted my confidence.</p>
+        <p class="card-description">I completely stepped out of my comfort zone and joined a pageant. It was an incredible experience where I met amazing people and created unforgettable memories. Seeing the support and belief from those who stood by me that day meant the world. I’m proud of myself for taking the leap and embracing the unknown—it truly boosted my confidence.</p>
       </div>
     </div>
 
@@ -208,7 +173,6 @@ body {
         <p class="card-description">I had an amazing time serving as the MC for our college program for two years. It pushed me far out of my comfort zone, but I loved every moment. I met so many incredible people, and the experience really helped me grow. I’m thrilled I took the chance and gave it my all.</p>
       </div>
     </div>
-  </div>
 </section>
 
 <script>
@@ -224,4 +188,3 @@ body {
 
 </body>
 </html>
-
